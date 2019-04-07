@@ -1,3 +1,4 @@
+import { DynamicUnknownComponent } from './../components/dynamic-unknown/dynamic-unknown';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -10,6 +11,11 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MockProvider } from '../providers/mock/mock';
+import { DynamicTaskListComponent } from '../components/dynamic-task-list/dynamic-task-list';
+import { DynamicObjectiveListComponent } from '../components/dynamic-objective-list/dynamic-objective-list';
+import { DynamicContentComponent } from '../components/dynamic-content/dynamic-content';
+import { ObjectivesPage } from '../pages/objectives/objectives';
 
 @NgModule({
   declarations: [
@@ -17,11 +23,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    DynamicTaskListComponent,
+    DynamicObjectiveListComponent,
+    DynamicContentComponent,
+    DynamicUnknownComponent,
+    ObjectivesPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +40,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    ObjectivesPage,
+    TabsPage,
+    DynamicTaskListComponent,
+    DynamicObjectiveListComponent,
+    DynamicContentComponent,
+    DynamicUnknownComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MockProvider
   ]
 })
 export class AppModule {}

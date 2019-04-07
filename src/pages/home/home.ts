@@ -1,3 +1,4 @@
+import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -6,9 +7,7 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController) {
-
+  context = this.mock.getTasks();
+  constructor(public navCtrl: NavController, private mock: MockProvider) {
   }
-
 }
