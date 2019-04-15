@@ -6,12 +6,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-list-header>
-      Tasks
-    </ion-list-header>
     <ion-item *ngFor="let task of tasks$ | async" detail navPush="task-edit" [navParams]="{task: task}">
       <ion-label>{{ task?.title }}</ion-label>
-      <!-- <p>{{ task.description }}</p> -->
     </ion-item>
   </ion-list>
 

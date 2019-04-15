@@ -2,6 +2,7 @@ import { Task } from './../../app/models/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TaskListService } from '../../providers/task-list-service/task-list-service';
+import { ToastService } from '../../providers/toast.service';
 
 /**
  * Generated class for the TaskAddPage page.
@@ -24,8 +25,11 @@ export class TaskAddPage {
     description: 'Go to the supermarket'
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private taskListService: TaskListService) {
-  }
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private taskListService: TaskListService,
+    private toast: ToastService
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TaskAddPage');
@@ -34,6 +38,7 @@ export class TaskAddPage {
   addTask(task: Task) {
     this.taskListService.addTask(task).then(ref => {
       console.log(ref.key);
+      this.toast.show(`${task.title}: saved!`)
       this.navCtrl.setRoot('home');
     })
   }

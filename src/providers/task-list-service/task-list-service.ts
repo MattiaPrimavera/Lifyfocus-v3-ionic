@@ -27,4 +27,8 @@ export class TaskListService {
   editTask(task: Task) {
     return this.taskListRef.update(task.key, task);
   }
+
+  removeTask(task: Task) {
+    return this.taskListRef.remove(task.key);
+  }
 }

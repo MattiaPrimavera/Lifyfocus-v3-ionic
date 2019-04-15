@@ -1,3 +1,4 @@
+import { ToastService } from './../providers/toast.service';
 import { TaskListService } from './../providers/task-list-service/task-list-service';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { DynamicUnknownComponent } from './../components/dynamic-unknown/dynamic-unknown';
@@ -44,7 +45,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockProvider,
-    TaskListService
+    TaskListService,
+    ToastService
   ],
 })
 export class AppModule {}
