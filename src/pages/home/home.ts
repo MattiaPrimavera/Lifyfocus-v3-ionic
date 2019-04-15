@@ -4,6 +4,7 @@ import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @IonicPage({
   name: 'home',

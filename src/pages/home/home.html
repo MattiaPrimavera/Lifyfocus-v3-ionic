@@ -7,8 +7,8 @@
 <ion-content padding>
   <ion-list>
     <ion-item *ngFor="let task of tasks$ | async">
-      <ion-label>{{ task }}</ion-label>
-      <!-- <p>{{ task.description }}</p> -->
+      <ion-label>{{ task.title }}</ion-label>
+      <p>{{ task.description }}</p>
     </ion-item>
   </ion-list>
 
