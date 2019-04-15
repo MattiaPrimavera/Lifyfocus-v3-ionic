@@ -8,4 +8,6 @@ It is just another **Task manager**
 - Real time database (Firebase)
 
 ## Docs
-- [x] [Firebase real time db with Angularfire module](https://www.udemy.com/create-a-crud-application-with-ionic-3-and-firebase/)
+- [x] Firebase real time db with Angularfire module
+  - [x] [Video lesson](https://www.udemy.com/create-a-crud-application-with-ionic-3-and-firebase/)
+  - [x] [Article](https://grokonez.com/firebase/ionic-3-firebase-example-crud-operations-with-firebase-realtime-database)
