@@ -23,4 +23,8 @@ export class TaskListService {
   addTask(task: Task) {
     return this.taskListRef.push(task);
   }
+
+  editTask(task: Task) {
+    return this.taskListRef.update(task.key, task);
+  }
 }
