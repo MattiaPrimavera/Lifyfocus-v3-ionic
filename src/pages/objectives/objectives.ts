@@ -9,7 +9,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  name: 'objectives',
+  segment: 'objectives'
+})
 @Component({
   selector: 'page-objectives',
   templateUrl: 'objectives.html',

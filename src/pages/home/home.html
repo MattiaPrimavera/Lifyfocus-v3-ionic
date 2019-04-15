@@ -5,5 +5,12 @@
 </ion-header>
 
 <ion-content padding>
-  <dynamic-content type="task" [context]="context"></dynamic-content>
+  <ion-list>
+    <ion-item *ngFor="let task of tasks$ | async">
+      <ion-label>{{ task }}</ion-label>
+      <!-- <p>{{ task.description }}</p> -->
+    </ion-item>
+  </ion-list>
+
+  <button ion-button block clear (click)="openTaskAddPage()">Add</button>
 </ion-content>
