@@ -21,8 +21,8 @@ import { ToastService } from '../../providers/toast.service';
 })
 export class TaskAddPage {
   task: Task = {
-    title: 'Shopping list - Today',
-    description: 'Go to the supermarket'
+    title: '',
+    description: ''
   }
 
   constructor(public navCtrl: NavController,

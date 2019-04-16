@@ -1,15 +1,16 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Tasks</ion-title>
+    <ion-icon color="secondary" float-right name="add-circle-outline" (click)="openTaskAddPage()"></ion-icon>
+
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let task of tasks$ | async" detail navPush="task-edit" [navParams]="{task: task}">
+    <ion-item detail-push *ngFor="let task of tasks$ | async" mode="ios" navPush="task-edit" [navParams]="{task: task}">
       <ion-label>{{ task?.title }}</ion-label>
     </ion-item>
   </ion-list>
-
-  <button ion-button block clear (click)="openTaskAddPage()">Add</button>
 </ion-content>
