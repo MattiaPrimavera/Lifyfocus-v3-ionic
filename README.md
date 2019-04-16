@@ -4,6 +4,19 @@ Ionic 3 application playground. This project is born for testing Angular & Ionic
 
 It is just another **Task manager**
 
+## Planning
+- [x] Task cruds
+- [ ] Customize home screen icon
+- [ ] Display splash screen
+- [ ] Using [item sliding](https://ionicframework.com/docs/api/item-sliding)
+- [ ] Authentification (Firebase)
+- [ ] Material Design
+- [ ] Display loader while fetching data
+- [ ] Offline first
+- [ ] Display network status
+- [ ] Restrict data access
+- [ ] Header task search bar
+
 ## Features
 - Real time database (Firebase)
 
