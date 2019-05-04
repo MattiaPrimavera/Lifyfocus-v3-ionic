@@ -1,8 +1,10 @@
+import { MockProvider } from './../../providers/mock/mock';
 import { TaskListService } from './../../providers/task-list-service/task-list-service';
 import { Task } from './../../app/models/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastService } from '../../providers/toast.service';
+import * as Environment from '../../app/environment';
 
 /**
  * Generated class for the TaskEditPage page.
@@ -25,11 +27,15 @@ export class TaskEditPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private taskService: TaskListService,
-    private toast: ToastService
+    private toast: ToastService,
+    private mock: MockProvider
   ) {}
 
   ionViewDidLoad() {
     this.task = this.navParams.get('task');
+    if(!this.task && Environment.NODE_ENV === 'test') {
+      this.task = this.mock.getTasks().pop();
+    }
   }
 
   saveTask(task: Task) {
