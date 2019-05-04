@@ -12,15 +12,22 @@
 
 <ion-content *ngIf="task" padding>
   <ion-item>
-    <ion-label>Title</ion-label>
+    <ion-label floating>Title</ion-label>
     <ion-input [(ngModel)]="task.title" placeholder="Go to the supermarket"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Description</ion-label>
+    <ion-label floating>Description</ion-label>
     <ion-input [(ngModel)]="task.description" placeholder="Buy the following items ..."></ion-input>
   </ion-item>
 
-  <button ion-button block clear (click)="saveTask(task)">Save</button>
-  <button ion-button block clear color="danger" (click)="removeTask(task)">Remove</button>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button block clear (click)="saveTask(task)">Save</button>
+    </ion-col>
+
+    <ion-col col-6>
+      <button ion-button block clear color="danger" (click)="removeTask(task)">Remove</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
