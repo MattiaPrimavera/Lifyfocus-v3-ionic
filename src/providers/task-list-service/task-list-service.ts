@@ -1,10 +1,8 @@
 import { FirebaseDbProvider } from './../firebase-db/firebase-db';
 import { MockDbProvider } from './../mock-db/mock-db';
-import { Observable } from 'rxjs';
 import { Task } from './../../app/models/task';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
-import * as Constants from '../../app/constants';
+import * as Environment from '../../app/environment';
 
 /*
   Generated class for the TaskListServiceProvider provider.
@@ -20,7 +18,7 @@ export class TaskListService {
     private firebaseDb: FirebaseDbProvider,
     private mockDb: MockDbProvider,
   ) {
-    this.db = Constants.NODE_ENV === 'test' ? this.mockDb : this.firebaseDb;
+    this.db = Environment.NODE_ENV === 'test' ? this.mockDb : this.firebaseDb;
   }
 
   getTasks() {

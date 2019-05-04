@@ -1,7 +1,7 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Task } from '../../app/models/task';
-import * as Constants from '../../app/constants';
+import * as Environment from '../../app/environment';
 
 /*
   Generated class for the FirebaseDbProvider provider.
@@ -11,7 +11,7 @@ import * as Constants from '../../app/constants';
 */
 @Injectable()
 export class FirebaseDbProvider {
-  private taskListRef = Constants.NODE_ENV === 'test' ? null : this.db.list<Task>('tasks');
+  private taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>('tasks');
   constructor(
     private db: AngularFireDatabase
   ) {}
