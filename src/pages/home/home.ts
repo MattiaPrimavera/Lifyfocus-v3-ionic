@@ -4,7 +4,6 @@ import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @IonicPage({
   name: 'home',
@@ -15,20 +14,10 @@ import { map } from 'rxjs/operators';
   templateUrl: 'home.html'
 })
 export class HomePage {
-//  context = this.mock.getTasks();
-  tasks$: Observable<Task[]>;
+  tasks$: Observable<Task[]>
 
   constructor(public navCtrl: NavController, private mock: MockProvider, private taskListService: TaskListService) {
-    this.tasks$ = this.taskListService
-      .getTasks() // Db list
-      .snapshotChanges() // Key and value
-      .map(changes => {
-        console.log('Changes: ', changes);
-        return changes.map(c => ({
-          key: c.payload.key,
-          ...c.payload.val(),
-        }))
-      })
+    this.tasks$ = this.taskListService.getTasks()
   }
 
   openTaskAddPage() {

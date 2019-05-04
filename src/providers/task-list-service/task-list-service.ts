@@ -1,6 +1,10 @@
+import { FirebaseDbProvider } from './../firebase-db/firebase-db';
+import { MockDbProvider } from './../mock-db/mock-db';
+import { Observable } from 'rxjs';
 import { Task } from './../../app/models/task';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import * as Constants from '../../app/constants';
 
 /*
   Generated class for the TaskListServiceProvider provider.
@@ -10,25 +14,28 @@ import { AngularFireDatabase } from 'angularfire2/database';
 */
 @Injectable()
 export class TaskListService {
-  private taskListRef = this.db.list<Task>('tasks')
+  private db: any;
 
-  constructor(private db: AngularFireDatabase) {
-    console.log('Hello TaskListServiceProvider Provider');
+  constructor(
+    private firebaseDb: FirebaseDbProvider,
+    private mockDb: MockDbProvider,
+  ) {
+    this.db = Constants.NODE_ENV === 'test' ? this.mockDb : this.firebaseDb;
   }
 
   getTasks() {
-    return this.taskListRef;
+    return this.db.getTasks();
   }
 
   addTask(task: Task) {
-    return this.taskListRef.push(task);
+    return this.db.addTask(task);
   }
 
   editTask(task: Task) {
-    return this.taskListRef.update(task.key, task);
+    return this.db.editTask(task.key, task);
   }
 
   removeTask(task: Task) {
-    return this.taskListRef.remove(task.key);
+    return this.db.removeTask(task.key);
   }
 }

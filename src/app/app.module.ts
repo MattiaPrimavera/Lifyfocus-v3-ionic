@@ -11,6 +11,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MockProvider } from '../providers/mock/mock';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { MockDbProvider } from '../providers/mock-db/mock-db';
+import { FirebaseDbProvider } from '../providers/firebase-db/firebase-db';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockProvider,
     TaskListService,
-    ToastService
+    ToastService,
+    MockDbProvider,
+    FirebaseDbProvider
   ],
 })
 export class AppModule {}
