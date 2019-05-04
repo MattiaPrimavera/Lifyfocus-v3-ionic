@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Task } from '../../app/models/task';
 
 /*
   Generated class for the MockProvider provider.
@@ -8,20 +9,19 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class MockProvider {
+  constructor() {}
 
-  constructor() {
-    console.log('Hello MockProvider Provider');
-  }
-
-  getTasks() {
+  getTasks(): Task[] {
     return [
       {
-        name: 'Dentist',
-        details: 'Dentist floo3, avenue Liberty'
+        key: 'test_key',
+        title: 'Dentist',
+        description: 'Dentist third floor, avenue Liberty'
       },
       {
-        name: 'Publish article',
-        details: 'publish development blog article'
+        key: 'test_key2',
+        title: 'Publish article',
+        description: 'publish development blog article'
       },
     ]
   }
