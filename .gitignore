@@ -36,3 +36,6 @@ resources/ios
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+# Gulp generated
+./src/app/constants.js
