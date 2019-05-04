@@ -1,9 +1,14 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Tasks</ion-title>
-    <ion-icon color="secondary" float-right name="add-circle-outline" (click)="openTaskAddPage()"></ion-icon>
+    <ion-row>
+      <ion-col col-9>
+        <ion-title>Tasks</ion-title>
+      </ion-col>
 
-
+      <ion-col col-3>
+        <ion-icon color="secondary" name="add-circle" (click)="openTaskAddPage()"></ion-icon>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 
