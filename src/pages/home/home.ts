@@ -20,7 +20,20 @@ export class HomePage {
     this.tasks$ = this.taskListService.getTasks()
   }
 
-  openTaskAddPage() {
+  onInput(event: any) {
+
+  }
+
+  onCancel(event: any) {
+
+  }
+
+  openTaskAdd() {
     this.navCtrl.push('task-add')
+  }
+
+  openTaskDetails() {
+    console.log('Open task detail called')
+    this.navCtrl.push('task-edit')
   }
 }

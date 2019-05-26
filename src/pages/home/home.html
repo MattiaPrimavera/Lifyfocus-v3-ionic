@@ -14,8 +14,30 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item detail-push *ngFor="let task of tasks$ | async" mode="ios" navPush="task-edit" [navParams]="{task: task}">
-      <ion-label>{{ task?.title }}</ion-label>
-    </ion-item>
+    <ion-item-sliding detail-push #item *ngFor="let task of tasks$ | async" (click)="openTaskDetails()">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="img/slimer.png">
+        </ion-avatar>
+        <h3>{{ task?.title }}</h3>
+        <p>{{ task?.description }}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="red">
+          <ion-icon name="mail"></ion-icon>
+          Remove
+        </button>
+
+        <button ion-button color="secondary">
+          <ion-icon name="mail"></ion-icon>
+          Edit
+        </button>
+
+        <button ion-button color="primary">
+          <ion-icon name="mail"></ion-icon>
+          Done
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
