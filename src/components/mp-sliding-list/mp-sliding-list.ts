@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MenuEntry } from '../../app/models/menu-entry';
 
@@ -15,8 +15,13 @@ import { MenuEntry } from '../../app/models/menu-entry';
 export class MpSlidingListComponent {
   @Input('items') items$: Observable<any[]>;
   @Input('menu') menu: MenuEntry[];
+  @Output('itemClick') onClick = new EventEmitter();
 
   constructor(){
 
+  }
+
+  onItemClick(item: any) {
+    this.onClick.emit(item);
   }
 }

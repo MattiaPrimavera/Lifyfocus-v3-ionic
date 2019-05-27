@@ -31,12 +31,11 @@ export class HomePage {
     this.openPage('task-add');
   }
 
-  openTaskDetails() {
-    console.log('Open task detail called')
-    this.openPage('task-edit');
+  openTaskDetails(task) {
+    this.openPage('task-edit', {task});
   }
 
-  openPage(page: string) {
-    this.navCtrl.push(page);
+  openPage(page: string, params: any = {}) {
+    this.navCtrl.push(page, params);
   }
 }

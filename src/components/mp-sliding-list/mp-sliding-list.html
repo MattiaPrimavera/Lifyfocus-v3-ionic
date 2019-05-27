@@ -2,6 +2,7 @@
 <ion-list>
     <ng-container *ngFor="let item of items$ | async">
       <mp-sliding-item
+        (itemClick)="onItemClick(item)"
         [item]="item"
         [menu]="menu">
       </mp-sliding-item>
