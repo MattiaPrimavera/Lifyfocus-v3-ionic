@@ -4,6 +4,7 @@ import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
+import { MenuEntry } from '../../app/models/menu-entry';
 
 @IonicPage({
   name: 'home',
@@ -15,25 +16,27 @@ import { Observable } from 'rxjs';
 })
 export class HomePage {
   tasks$: Observable<Task[]>
+  menu: MenuEntry[];
 
   constructor(public navCtrl: NavController, private mock: MockProvider, private taskListService: TaskListService) {
     this.tasks$ = this.taskListService.getTasks()
-  }
-
-  onInput(event: any) {
-
-  }
-
-  onCancel(event: any) {
-
+    this.menu = [{
+      color: 'primary',
+      label: 'Remove',
+      icon: 'email'
+    }]
   }
 
   openTaskAdd() {
-    this.navCtrl.push('task-add')
+    this.openPage('task-add');
   }
 
   openTaskDetails() {
     console.log('Open task detail called')
-    this.navCtrl.push('task-edit')
+    this.openPage('task-edit');
+  }
+
+  openPage(page: string) {
+    this.navCtrl.push(page);
   }
 }

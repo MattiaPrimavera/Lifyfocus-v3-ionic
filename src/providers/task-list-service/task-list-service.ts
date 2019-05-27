@@ -3,6 +3,7 @@ import { MockDbProvider } from './../mock-db/mock-db';
 import { Task } from './../../app/models/task';
 import { Injectable } from '@angular/core';
 import * as Environment from '../../app/environment';
+import { Observable } from 'rxjs';
 
 /*
   Generated class for the TaskListServiceProvider provider.
@@ -21,7 +22,7 @@ export class TaskListService {
     this.db = Environment.NODE_ENV === 'test' ? this.mockDb : this.firebaseDb;
   }
 
-  getTasks() {
+  getTasks(): Observable<Task[]> {
     return this.db.getTasks();
   }
 

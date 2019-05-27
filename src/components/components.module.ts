@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
+import { MpSlidingItemComponent } from './mp-sliding-item/mp-sliding-item';
+import { MpSlidingListComponent } from './mp-sliding-list/mp-sliding-list';
 @NgModule({
-	declarations: [],
+	declarations: [MpSlidingItemComponent,
+    MpSlidingListComponent],
 	imports: [],
-	exports: []
+	exports: [MpSlidingItemComponent,
+    MpSlidingListComponent]
 })
 export class ComponentsModule {}

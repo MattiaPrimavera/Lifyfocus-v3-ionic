@@ -2,6 +2,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { Task } from '../../app/models/task';
 import * as Environment from '../../app/environment';
+import { Observable } from 'rxjs';
 
 /*
   Generated class for the FirebaseDbProvider provider.
@@ -16,7 +17,7 @@ export class FirebaseDbProvider {
     private db: AngularFireDatabase
   ) {}
 
-  getTasks() {
+  getTasks(): Observable<Task[]> {
     return this.taskListRef
       .snapshotChanges() // Key and value
       .map(changes => {

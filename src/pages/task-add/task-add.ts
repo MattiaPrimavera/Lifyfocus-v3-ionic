@@ -22,7 +22,9 @@ import { ToastService } from '../../providers/toast.service';
 export class TaskAddPage {
   task: Task = {
     title: '',
-    description: ''
+    description: '',
+    created: new Date(),
+    done: false
   }
 
   constructor(public navCtrl: NavController,

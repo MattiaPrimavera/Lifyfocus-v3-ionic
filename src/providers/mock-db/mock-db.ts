@@ -18,12 +18,12 @@ export class MockDbProvider {
     private mock: MockProvider
   ) {
     this.tasks = this.mock.getTasks();
-    this.tasks$ = new ReplaySubject();
+    this.tasks$ = new ReplaySubject<Task[]>();
     this.tasks$.next(this.tasks);
   }
 
   getTasks() {
-    return this.tasks$;
+    return this.tasks$.asObservable();
   }
 
   publish() {

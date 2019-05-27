@@ -1,0 +1,9 @@
+<!-- Generated template for the MpSlidingListComponent component -->
+<ion-list>
+    <ng-container *ngFor="let item of items$ | async">
+      <mp-sliding-item
+        [item]="item"
+        [menu]="menu">
+      </mp-sliding-item>
+    </ng-container>
+</ion-list>
