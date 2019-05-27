@@ -1,5 +1,5 @@
 <!-- Generated template for the MpSlidingItemComponent component -->
-<ion-item-sliding detail-push (click)="onItemClicked(item)">
+<ion-item-sliding detail-push>
   <ion-item>
     <ion-avatar item-start>
       <img src="assets/imgs/logo.png">
@@ -9,7 +9,7 @@
   </ion-item>
 
   <ion-item-options side="right">
-    <button *ngFor="let entry of menu" ion-button [color]="entry.color">
+    <button *ngFor="let entry of menu.right" ion-button [color]="entry.color">
       <ion-icon [name]="entry.icon"></ion-icon>
       {{entry.label}}
     </button>

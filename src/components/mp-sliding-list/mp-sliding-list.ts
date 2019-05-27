@@ -17,10 +17,6 @@ export class MpSlidingListComponent {
   @Input('menu') menu: MenuEntry[];
   @Output('itemClick') onClick = new EventEmitter();
 
-  constructor(){
-
-  }
-
   onItemClick(item: any) {
     this.onClick.emit(item);
   }

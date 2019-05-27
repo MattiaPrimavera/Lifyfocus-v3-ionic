@@ -3,3 +3,8 @@ export interface MenuEntry {
   label: string;
   icon: string;
 }
+
+export interface Menu {
+  right: MenuEntry[];
+  left: MenuEntry[];
+}

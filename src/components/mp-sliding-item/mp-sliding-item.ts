@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { MenuEntry } from '../../app/models/menu-entry';
+import { Menu } from 'ionic-angular';
 
 /**
  * Generated class for the MpSlidingItemComponent component.
@@ -13,7 +13,7 @@ import { MenuEntry } from '../../app/models/menu-entry';
 })
 export class MpSlidingItemComponent {
   @Input() item: any;
-  @Input() menu: MenuEntry[];
+  @Input() menu: Menu;
   @Output('itemClick') onClick = new EventEmitter();
 
   onItemClicked(item) {
