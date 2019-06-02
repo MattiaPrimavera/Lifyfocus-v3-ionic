@@ -2,14 +2,15 @@
 <ion-item-sliding detail-push>
   <ion-item>
     <ion-avatar item-start>
-      <img src="assets/imgs/logo.png">
+      <ion-icon *ngIf="item.done" name="done-all"></ion-icon>
+      <img *ngIf="!item.done" src="assets/imgs/logo.png">
     </ion-avatar>
     <h3>{{ item.title }}</h3>
     <p>{{ item.description }}</p>
   </ion-item>
 
   <ion-item-options side="right">
-    <button *ngFor="let entry of menu.right" ion-button [color]="entry.color">
+    <button *ngFor="let entry of menu.right" (click)="onOptionClicked(entry.id, item)" ion-button [color]="entry.color">
       <ion-icon [name]="entry.icon"></ion-icon>
       {{entry.label}}
     </button>

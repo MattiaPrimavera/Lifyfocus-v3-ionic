@@ -16,8 +16,13 @@ export class MpSlidingListComponent {
   @Input('items') items$: Observable<any[]>;
   @Input('menu') menu: MenuEntry[];
   @Output('itemClick') onClick = new EventEmitter();
+  @Output('optionClick') onOptionClick = new EventEmitter();
 
   onItemClick(item: any) {
     this.onClick.emit(item);
+  }
+
+  onOptionClicked($event) {
+    this.onOptionClick.emit($event);
   }
 }

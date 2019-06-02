@@ -15,6 +15,7 @@
 <ion-content padding>
   <mp-sliding-list
     (itemClick)="openTaskDetails($event)"
+    (optionClick)="onOptionClicked($event)"
     [menu]="menu"
     [items]="tasks$">
   </mp-sliding-list>

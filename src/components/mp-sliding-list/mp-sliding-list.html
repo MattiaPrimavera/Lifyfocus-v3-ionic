@@ -3,6 +3,7 @@
     <ng-container *ngFor="let item of items$ | async">
       <mp-sliding-item
         (itemClick)="onItemClick(item)"
+        (optionClick)="onOptionClicked($event)"
         [item]="item"
         [menu]="menu">
       </mp-sliding-item>

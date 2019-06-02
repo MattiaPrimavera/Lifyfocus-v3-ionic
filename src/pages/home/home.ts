@@ -6,6 +6,12 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { Menu } from '../../app/models/menu-entry';
 
+export enum SlideActions {
+  View = "View",
+  Done = "Done",
+  Remove = "Remove",
+}
+
 @IonicPage({
   name: 'home',
   segment: 'home'
@@ -18,27 +24,61 @@ export class HomePage {
   tasks$: Observable<Task[]>
   menu: Menu;
 
+
   constructor(public navCtrl: NavController, private mock: MockProvider, private taskListService: TaskListService) {
     this.tasks$ = this.taskListService.getTasks()
     this.menu = { right: [
           {
             color: 'primary',
             label: 'Remove',
-            icon: 'email'
+            id: SlideActions.Remove,
+            icon: 'email',
           },
           {
             color: 'secondary',
             label: 'View',
-            icon: 'email'
+            id: SlideActions.View,
+            icon: 'email',
           },
           {
             color: 'secondary',
             label: 'Done',
-            icon: 'email'
+            icon: 'email',
+            id: SlideActions.Done
           }
         ],
       left: []
     }
+  }
+
+  onOptionClicked($event) {
+    const {optionId, item} = $event;
+    const task = item;
+    switch(optionId) {
+      case SlideActions.Done:
+        this.setTaskDone(task);
+        break;
+      case SlideActions.Remove:
+        this.removeTask(task);
+        break;
+      case SlideActions.View:
+        this.viewTask(task);
+        break;
+      default:
+        break;
+    }
+  }
+
+  viewTask(task) {
+    this.openTaskDetails(task);
+  }
+
+  removeTask(task) {
+    this.taskListService.removeTask(task);
+  }
+
+  setTaskDone(task) {
+    this.taskListService.setDone(task);
   }
 
   openTaskAdd() {
