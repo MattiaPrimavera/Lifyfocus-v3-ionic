@@ -2,6 +2,7 @@ import { ReplaySubject } from 'rxjs';
 import { MockProvider } from './../mock/mock';
 import { Injectable } from '@angular/core';
 import { Task } from '../../app/models/task';
+import { TaskEditPage } from '../../pages/task-edit/task-edit';
 
 /*
   Generated class for the MockDbProvider provider.
@@ -35,6 +36,11 @@ export class MockDbProvider {
     this.publish();
   }
 
+  async setDone(task: Task) {
+    task.done = true;
+    return this.editTask(task);
+  }
+
   async editTask(task: Task) {
     for(let t of this.tasks) {
       if(t.key === task.key) {
@@ -45,8 +51,8 @@ export class MockDbProvider {
     }
   }
 
-  async removeTask(key: string) {
-    this.tasks = this.tasks.filter(t => t.key !== key);
+  async removeTask(task: Task) {
+    this.tasks = this.tasks.filter(t => t.key !== task.key);
     this.publish();
     return;
   }

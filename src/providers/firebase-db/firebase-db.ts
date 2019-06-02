@@ -32,11 +32,16 @@ export class FirebaseDbProvider {
     return this.taskListRef.push(task);
   }
 
-  editTask(task: Task) {
+  editTask(task: Task): Promise<void> {
     return this.taskListRef.update(task.key, task);
   }
 
-  removeTask(task: Task) {
+  setDone(task: Task): Promise<void> {
+    task.done = true;
+    return this.editTask(task);
+  }
+
+  removeTask(task: Task): Promise<void> {
     return this.taskListRef.remove(task.key);
   }
 }
