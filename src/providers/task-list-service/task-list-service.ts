@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import * as Environment from '../../app/environment';
 import { Observable } from 'rxjs';
 import { FirebaseDbProvider } from '../firebase-db/firebase-db';
+import { takeLast } from 'rxjs/operator/takeLast';
 
 /*
   Generated class for the TaskListServiceProvider provider.
@@ -38,8 +39,8 @@ export class TaskListService {
     return this.db.removeTask(task);
   }
 
-  setDone(task: Task): Promise<void> {
-    task.done = true;
+  updateDoneStatus(task: Task): Promise<void> {
+    task.done = !task.done;
     return this.db.editTask(task);
   }
 }

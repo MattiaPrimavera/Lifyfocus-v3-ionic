@@ -1,6 +1,5 @@
 import { Task } from './../../app/models/task';
 import { TaskListService } from './../../providers/task-list-service/task-list-service';
-import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
@@ -21,37 +20,42 @@ export enum SlideActions {
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public static TASK_ADD_PAGE = 'task-add';
+  public static TASK_EDIT_PAGE = 'task-edit';
   tasks$: Observable<Task[]>
-  menu: Menu;
+  slidingItemMenu: Menu;
 
-
-  constructor(public navCtrl: NavController, private mock: MockProvider, private taskListService: TaskListService) {
+  constructor(public navCtrl: NavController, private taskListService: TaskListService) {
     this.tasks$ = this.taskListService.getTasks()
-    this.menu = { right: [
-          {
-            color: 'primary',
-            label: 'Remove',
-            id: SlideActions.Remove,
-            icon: 'email',
-          },
-          {
-            color: 'secondary',
-            label: 'View',
-            id: SlideActions.View,
-            icon: 'email',
-          },
-          {
-            color: 'secondary',
-            label: 'Done',
-            icon: 'email',
-            id: SlideActions.Done
-          }
-        ],
+    this.setupSlidingItemMenu();
+  }
+
+  setupSlidingItemMenu() {
+    this.slidingItemMenu = { right: [
+      {
+        color: 'primary',
+        label: 'Remove',
+        id: SlideActions.Remove,
+        icon: 'email',
+      },
+      {
+        color: 'secondary',
+        label: 'View',
+        id: SlideActions.View,
+        icon: 'email',
+      },
+      {
+        color: 'secondary',
+        label: 'Done',
+        icon: 'email',
+        id: SlideActions.Done
+      }
+    ],
       left: []
     }
   }
 
-  onOptionClicked($event) {
+  onSlidingItemMenuClick($event) {
     const {optionId, item} = $event;
     const task = item;
     switch(optionId) {
@@ -69,24 +73,24 @@ export class HomePage {
     }
   }
 
-  viewTask(task) {
+  viewTask(task: Task) {
     this.openTaskDetails(task);
   }
 
-  removeTask(task) {
+  removeTask(task: Task) {
     this.taskListService.removeTask(task);
   }
 
-  setTaskDone(task) {
-    this.taskListService.setDone(task);
+  setTaskDone(task: Task) {
+    this.taskListService.updateDoneStatus(task);
   }
 
   openTaskAdd() {
-    this.openPage('task-add');
+    this.openPage(HomePage.TASK_ADD_PAGE);
   }
 
-  openTaskDetails(task) {
-    this.openPage('task-edit', {task});
+  openTaskDetails(task: Task) {
+    this.openPage(HomePage.TASK_EDIT_PAGE, {task});
   }
 
   openPage(page: string, params: any = {}) {
