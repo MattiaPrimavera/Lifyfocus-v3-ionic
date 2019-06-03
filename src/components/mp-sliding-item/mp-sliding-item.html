@@ -9,10 +9,10 @@
     <p>{{ item.description }}</p>
   </ion-item>
 
-  <ion-item-options side="right">
-    <button *ngFor="let entry of menu.right" (click)="onOptionClicked(entry.id, item)" ion-button [color]="entry.color">
-      <ion-icon [name]="entry.icon"></ion-icon>
-      {{entry.label}}
-    </button>
-  </ion-item-options>
+    <ion-item-options side="right">
+      <button *ngFor="let entry of menu.right" (click)="onOptionClicked(entry.id, item)" ion-button [color]="entry.color">
+        <ion-icon [name]="entry.icon"></ion-icon>
+        {{entry.label}}
+      </button>
+    </ion-item-options>
 </ion-item-sliding>

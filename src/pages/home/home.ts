@@ -22,36 +22,25 @@ export enum SlideActions {
 export class HomePage {
   public static TASK_ADD_PAGE = 'task-add';
   public static TASK_EDIT_PAGE = 'task-edit';
-  tasks$: Observable<Task[]>
-  slidingItemMenu: Menu;
-
-  constructor(public navCtrl: NavController, private taskListService: TaskListService) {
-    this.tasks$ = this.taskListService.getTasks()
-    this.setupSlidingItemMenu();
-  }
-
-  setupSlidingItemMenu() {
-    this.slidingItemMenu = { right: [
-      {
-        color: 'primary',
-        label: 'Remove',
-        id: SlideActions.Remove,
-        icon: 'email',
-      },
-      {
-        color: 'secondary',
-        label: 'View',
-        id: SlideActions.View,
-        icon: 'email',
-      },
-      {
-        color: 'secondary',
-        label: 'Done',
-        icon: 'email',
-        id: SlideActions.Done
-      }
-    ],
-      left: []
+  tasks$: Observable<Task[]> = this.taskService.getTasks();
+  slidingItemMenu: Menu = { right: [
+    {
+      color: 'primary',
+      label: 'Remove',
+      id: SlideActions.Remove,
+      icon: 'email',
+    },
+    {
+      color: 'secondary',
+      label: 'View',
+      id: SlideActions.View,
+      icon: 'email',
+    },
+    {
+      color: 'secondary',
+      label: 'Done',
+      icon: 'email',
+      id: SlideActions.Done
     }
   ],
     left: []
