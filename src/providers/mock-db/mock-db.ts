@@ -2,7 +2,6 @@ import { ReplaySubject } from 'rxjs';
 import { MockProvider } from './../mock/mock';
 import { Injectable } from '@angular/core';
 import { Task } from '../../app/models/task';
-import { TaskEditPage } from '../../pages/task-edit/task-edit';
 
 /*
   Generated class for the MockDbProvider provider.
@@ -31,9 +30,16 @@ export class MockDbProvider {
     this.tasks$.next(this.tasks);
   }
 
-  addTask(task: Task) {
+  async addTask(task: Task): Promise<void> {
+    if(!task.key)
+      task.key = this.generateTaskKey(task);
     this.tasks.push(task);
     this.publish();
+    return;
+  }
+
+  generateTaskKey(task: Task) {
+    return task.description + Date.now();
   }
 
   async setDone(task: Task) {
