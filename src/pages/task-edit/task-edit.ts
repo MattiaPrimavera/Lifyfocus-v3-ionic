@@ -1,5 +1,5 @@
 import { MockProvider } from './../../providers/mock/mock';
-import { TaskListService } from './../../providers/task-list-service/task-list-service';
+import { TaskService } from '../../providers/task-service/task-service';
 import { Task } from './../../app/models/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -26,7 +26,7 @@ export class TaskEditPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private taskService: TaskListService,
+    private taskService: TaskService,
     private toast: ToastService,
     private mock: MockProvider
   ) {}

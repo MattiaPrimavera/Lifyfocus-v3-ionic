@@ -1,5 +1,5 @@
 import { Task } from './../../app/models/task';
-import { TaskListService } from './../../providers/task-list-service/task-list-service';
+import { TaskService } from '../../providers/task-service/task-service';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { Observable } from 'rxjs';
@@ -53,7 +53,11 @@ export class HomePage {
     ],
       left: []
     }
-  }
+  ],
+    left: []
+  };
+
+  constructor(public navCtrl: NavController, private taskService: TaskService) {}
 
   onSlidingItemMenuClick($event) {
     const {optionId, item} = $event;
@@ -78,11 +82,11 @@ export class HomePage {
   }
 
   removeTask(task: Task) {
-    this.taskListService.removeTask(task);
+    this.taskService.removeTask(task);
   }
 
   setTaskDone(task: Task) {
-    this.taskListService.updateDoneStatus(task);
+    this.taskService.updateDoneStatus(task);
   }
 
   openTaskAdd() {

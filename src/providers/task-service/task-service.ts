@@ -1,19 +1,18 @@
-import { MockDbProvider } from './../mock-db/mock-db';
-import { Task } from './../../app/models/task';
+import { MockDbProvider } from '../mock-db/mock-db'
+import { Task } from '../../app/models/task'
 import { Injectable } from '@angular/core';
 import * as Environment from '../../app/environment';
 import { Observable } from 'rxjs';
 import { FirebaseDbProvider } from '../firebase-db/firebase-db';
-import { takeLast } from 'rxjs/operator/takeLast';
 
 /*
-  Generated class for the TaskListServiceProvider provider.
+  Generated class for the TaskService provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class TaskListService {
+export class TaskService {
   private db: FirebaseDbProvider | MockDbProvider;
 
   constructor(
@@ -27,7 +26,7 @@ export class TaskListService {
     return this.db.getTasks();
   }
 
-  addTask(task: Task) {
+  addTask(task: Task): any {
     return this.db.addTask(task);
   }
 

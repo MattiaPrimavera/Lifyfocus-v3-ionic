@@ -1,5 +1,5 @@
 import { ToastService } from './../providers/toast.service';
-import { TaskListService } from './../providers/task-list-service/task-list-service';
+import { TaskService } from '../providers/task-service/task-service';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +35,7 @@ import { FirebaseDbProvider } from '../providers/firebase-db/firebase-db';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockProvider,
-    TaskListService,
+    TaskService,
     ToastService,
     MockDbProvider,
     FirebaseDbProvider
