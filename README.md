@@ -15,3 +15,4 @@ It is just another **Task manager**
 - [x] Firebase real time db with Angularfire module
   - [x] [Video lesson](https://www.udemy.com/create-a-crud-application-with-ionic-3-and-firebase/)
   - [x] [Article](https://grokonez.com/firebase/ionic-3-firebase-example-crud-operations-with-firebase-realtime-database)
+- [x] [Firebase Authentification article](https://medium.com/appseed-io/integrating-firebase-password-and-google-authentication-into-your-ionic-3-app-2421cee32db9)

@@ -1,7 +1,7 @@
 import { Task } from './../../app/models/task';
 import { TaskService } from '../../providers/task-service/task-service';
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage, MenuController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { Menu } from '../../app/models/menu-entry';
 
@@ -46,7 +46,7 @@ export class HomePage {
     left: []
   };
 
-  constructor(public navCtrl: NavController, private taskService: TaskService) {}
+  constructor(public navCtrl: NavController, private taskService: TaskService, private menu: MenuController) {}
 
   onSlidingItemMenuClick($event) {
     const {optionId, item} = $event;
@@ -88,5 +88,9 @@ export class HomePage {
 
   openPage(page: string, params: any = {}) {
     this.navCtrl.push(page, params);
+  }
+
+  closeMenu() {
+    this.menu.close();
   }
 }
