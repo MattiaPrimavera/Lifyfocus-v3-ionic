@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private user: firebase.User;
   private auth: firebase.auth.Auth;
+  private profile: any;
 
 	constructor(public firebaseAuth: AngularFireAuth) {
     this.auth = firebaseAuth.auth;
@@ -20,14 +21,31 @@ export class AuthService {
     return this.firebaseAuth.authState;
   }
 
-	signInWithEmail(credentials: { email: any; password: any; }): Promise<any> {
-		console.log('Sign in with email');
-		return this.auth.signInWithEmailAndPassword(credentials.email,
-			 credentials.password);
-	}
+  get userProfile(): any {
+    return this.profile;
+  }
+
+	async signInWithEmail(credentials: { email: any; password: any; }): Promise<any> {
+		const profile = await this.auth.signInWithEmailAndPassword(credentials.email,
+       credentials.password);
+
+    this.storeProfile(profile);
+    return profile;
+  }
+
+  storeProfile(profile: any) {
+    this.profile = {
+      email: profile.email,
+      uid: profile.uid
+    }
+  }
 
 	signUp(credentials: { email: any; password: any; }) {
-		return this.auth.createUserWithEmailAndPassword(credentials.email,credentials.password);
+    return this.auth.createUserWithEmailAndPassword(credentials.email,credentials.password)
+      .then(profile => {
+
+        return Promise.resolve(profile);
+      })
 	}
 
 	get authenticated(): boolean {
@@ -43,7 +61,6 @@ export class AuthService {
 	}
 
 	signInWithGoogle(): Promise<any> {
-		console.log('Sign in with google');
 		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
 	}
 
