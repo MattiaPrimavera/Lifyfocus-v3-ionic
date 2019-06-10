@@ -1,7 +1,10 @@
+import { MockDbProvider } from '../db/mock-db/mock-db'
 import { Task } from '../../app/models/task'
 import { Injectable } from '@angular/core';
+import * as Environment from '../../app/environment';
 import { Observable } from 'rxjs';
-import { DatabaseService } from '../db/Database';
+import { FirebaseDbProvider } from '../db/firebase-db/firebase-db';
+import { IDatabase } from '../db/IDatabase';
 
 /*
   Generated class for the TaskService provider.
@@ -10,10 +13,21 @@ import { DatabaseService } from '../db/Database';
   and Angular DI.
 */
 @Injectable()
-export class TaskService {
+export class DatabaseService {
+  private db: IDatabase;
+
   constructor(
-    private db: DatabaseService
-  ) {}
+    private firebaseDb: FirebaseDbProvider,
+    private mockDb: MockDbProvider
+  ) {
+    console.log(`Task service, NODE_ENV: ${Environment.NODE_ENV}`)
+    this.db = Environment.NODE_ENV === 'test' ? this.mockDb : this.firebaseDb;
+  }
+
+  setUid(uid: string) {
+    if(Environment !== 'test')
+      this.firebaseDb.setUid(uid);
+  }
 
   getTasks(): Observable<Task[]> {
     return this.db.getTasks();

@@ -4,6 +4,8 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { SignupPage } from '../signup/signup';
+import * as Environment from '../../app/environment';
+import { DatabaseService } from '../../providers/db/Database';
 
 @IonicPage({
   segment: 'login',
@@ -19,7 +21,8 @@ export class LoginPage {
 
 	constructor(
 		private navCtrl: NavController,
-		private auth: AuthService,
+    private auth: AuthService,
+    private dbService: DatabaseService,
 		form: FormBuilder
 	) {
 		this.loginForm = form.group({
@@ -41,8 +44,16 @@ export class LoginPage {
 		};
 
     this.auth.signInWithEmail(credentials)
-			.then(() => this.navCtrl.setRoot(HomePage))
+			.then((credentials: any) => {
+        this.initDatabase(credentials);
+        this.navCtrl.setRoot(HomePage);
+      })
 			.catch(error => this.loginError = error.message);
+  }
+
+  initDatabase(credentials: any) {
+    if(Environment.NODE_ENV !== 'test')
+      this.dbService.setUid(credentials.uid);
   }
 
   signup(){

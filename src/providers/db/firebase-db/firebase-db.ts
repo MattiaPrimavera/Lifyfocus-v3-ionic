@@ -13,10 +13,16 @@ import { IDatabase } from '../IDatabase';
 */
 @Injectable()
 export class FirebaseDbProvider implements IDatabase {
-  private taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>(`tasks`);
+  private uid = null;
+  private taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>(`tasks/${this.uid}`);
   constructor(
     private db: AngularFireDatabase,
   ) {}
+
+  setUid(uid: string) {
+    this.uid = uid;
+    this.taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>(`tasks/${this.uid}`);
+  }
 
   getTasks(): Observable<Task[]> {
     return this.taskListRef
