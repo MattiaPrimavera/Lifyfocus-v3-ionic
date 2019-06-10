@@ -1,8 +1,9 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
-import { Task } from '../../app/models/task';
-import * as Environment from '../../app/environment';
+import { Task } from '../../../app/models/task';
+import * as Environment from '../../../app/environment';
 import { Observable } from 'rxjs';
+import { IDatabase } from '../IDatabase';
 
 /*
   Generated class for the FirebaseDbProvider provider.
@@ -11,10 +12,10 @@ import { Observable } from 'rxjs';
   and Angular DI.
 */
 @Injectable()
-export class FirebaseDbProvider {
-  private taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>('tasks');
+export class FirebaseDbProvider implements IDatabase {
+  private taskListRef = Environment.NODE_ENV === 'test' ? null : this.db.list<Task>(`tasks`);
   constructor(
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
   ) {}
 
   getTasks(): Observable<Task[]> {

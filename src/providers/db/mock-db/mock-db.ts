@@ -1,7 +1,8 @@
-import { ReplaySubject } from 'rxjs';
-import { MockProvider } from './../mock/mock';
+import { ReplaySubject, Observable } from 'rxjs';
+import { MockProvider } from '../../mock/mock';
 import { Injectable } from '@angular/core';
-import { Task } from '../../app/models/task';
+import { Task } from '../../../app/models/task';
+import { IDatabase } from '../IDatabase';
 
 /*
   Generated class for the MockDbProvider provider.
@@ -10,7 +11,7 @@ import { Task } from '../../app/models/task';
   and Angular DI.
 */
 @Injectable()
-export class MockDbProvider {
+export class MockDbProvider implements IDatabase{
   tasks: Task[];
   tasks$: ReplaySubject<Task[]>;
 
@@ -22,7 +23,7 @@ export class MockDbProvider {
     this.tasks$.next(this.tasks);
   }
 
-  getTasks() {
+  getTasks(): Observable<Task[]> {
     return this.tasks$.asObservable();
   }
 
@@ -38,7 +39,7 @@ export class MockDbProvider {
     return;
   }
 
-  generateTaskKey(task: Task) {
+  generateTaskKey(task: Task): string {
     return task.description + Date.now();
   }
 
