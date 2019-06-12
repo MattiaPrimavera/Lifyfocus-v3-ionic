@@ -19,3 +19,4 @@ It is just another **Task manager**
 - [x] [Generic Firebase data access](https://medium.com/@dneimke/generic-firebase-data-access-63ebd0506d53)
 - [X] [Angular Services do NOT have to be Singletons](https://netbasal.com/angular-services-do-not-have-to-be-singletons-ffa879e62082)
 - [X] [Lessons learnt (the hard way) using Firebase RealTime Database](https://pamartinezandres.com/lessons-learnt-the-hard-way-using-firebase-realtime-database-c609b52b9afb)
+- [ ] [Firebase data modeling](https://howtofirebase.com/firebase-data-modeling-939585ade7f4)
