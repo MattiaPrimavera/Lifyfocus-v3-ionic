@@ -4,7 +4,7 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { SignupPage } from '../signup/signup';
-import * as Environment from '../../app/environment';
+import { Environment } from '../../app/environment';
 
 @IonicPage({
   segment: 'login',

@@ -2,7 +2,7 @@ import { IBaseService } from "./ibase-service";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { IBaseEntity } from "./ibase-entity";
 import { Observable } from "rxjs";
-import * as Environment from '../../app/environment';
+import { Environment } from '../../app/environment';
 
 export abstract class BaseService<T extends IBaseEntity> implements IBaseService<T> {
   private ref: AngularFireList<T>;

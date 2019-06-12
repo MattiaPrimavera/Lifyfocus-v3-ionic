@@ -4,8 +4,8 @@ const env = process.env.NODE_ENV;
 const TEMPLATES_PATH = './gulp_templates';
 
 gulp.task('environment', function () {
-  return gulp.src(`${TEMPLATES_PATH}/environment.${env}.js`)
-    .pipe(rename('environment.js'))
+  return gulp.src(`${TEMPLATES_PATH}/environment.${env}.ts`)
+    .pipe(rename('environment.ts'))
     .pipe(gulp.dest('./src/app'))
 });
 

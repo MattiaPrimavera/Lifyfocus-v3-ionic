@@ -39,3 +39,4 @@ UserInterfaceState.xcuserstate
 
 # Gulp generated
 ./src/app/constants.js
+./src/app/environment.ts

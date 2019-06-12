@@ -4,7 +4,7 @@ import { Task } from './../../app/models/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastService } from '../../providers/toast.service';
-import * as Environment from '../../app/environment';
+import { Environment } from '../../app/environment';
 
 /**
  * Generated class for the TaskEditPage page.
