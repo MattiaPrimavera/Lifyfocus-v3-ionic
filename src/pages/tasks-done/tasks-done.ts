@@ -1,41 +1,51 @@
-import { Task } from './../../app/models/task';
-import { TaskService } from '../../providers/task-service/task-service';
 import { Component } from '@angular/core';
-import { NavController, IonicPage, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { MenuProvider, SlideActions } from '../../providers/menu/menu';
+import { TaskService } from '../../providers/task-service/task-service';
 import { Observable } from 'rxjs';
+import { Task } from '../../app/models/task';
 import { Menu } from '../../app/models/menu-entry';
-import { SlideActions, MenuProvider } from '../../providers/menu/menu';
+import { HomePage } from '../home/home';
+
+/**
+ * Generated class for the TasksDonePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage({
-  name: 'home',
-  segment: 'home'
+  segment: 'tasks-done',
+  name: 'tasks-done'
 })
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-tasks-done',
+  templateUrl: 'tasks-done.html',
   providers: [TaskService]
 })
-export class HomePage {
-  public static TASK_ADD_PAGE = 'task-add';
-  public static TASK_EDIT_PAGE = 'task-edit';
+export class TasksDonePage {
   tasks$: Observable<Task[]> = this.taskService.list()
     .switchMap((tasks: Task[]) => {
-      return Observable.of(tasks.filter(task => task.done === false));
+      return Observable.of(tasks.filter(task => task.done === true));
     });
-  slidingItemMenu: Menu = this.menuService.getTaskMenu('Done');
+
+  slidingItemMenu: Menu = this.menuService.getTaskMenu('Undone');
 
   constructor(
-    private menuService: MenuProvider,
     public navCtrl: NavController,
+    public navParams: NavParams,
+    private menuService: MenuProvider,
     private taskService: TaskService,
-    private menu: MenuController) {}
+    private menu: MenuController
+  ) {}
+
 
   onSlidingItemMenuClick($event) {
     const {optionId, item} = $event;
     const task = item;
     switch(optionId) {
       case SlideActions.Done:
-        this.setTaskDone(task);
+        this.setTaskToDo(task);
         break;
       case SlideActions.Remove:
         this.removeTask(task);
@@ -56,12 +66,8 @@ export class HomePage {
     this.taskService.delete(task.key);
   }
 
-  setTaskDone(task: Task) {
-    this.taskService.setDone(task, true);
-  }
-
-  openTaskAdd() {
-    this.openPage(HomePage.TASK_ADD_PAGE);
+  setTaskToDo(task: Task) {
+    this.taskService.setDone(task, false);
   }
 
   openTaskDetails(task: Task) {

@@ -16,13 +16,8 @@ export class TaskService extends BaseService<Task> {
     super(path, firebaseDb);
   }
 
-  // @TODO
-  updateDoneStatus(task) {
-    this.setDone(task);
-  }
-
-  setDone(task: Task): Promise<void> {
-    task.done = true;
+  setDone(task: Task, done: boolean): Promise<void> {
+    task.done = done;
     return this.update(task);
   }
 }

@@ -20,6 +20,9 @@ import * as Environment from '../../app/environment';
 @Component({
   selector: 'page-task-edit',
   templateUrl: 'task-edit.html',
+  providers: [
+    TaskService
+  ]
 })
 export class TaskEditPage {
   task: Task;

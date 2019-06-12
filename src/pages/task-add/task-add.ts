@@ -18,6 +18,9 @@ import { ToastService } from '../../providers/toast.service';
 @Component({
   selector: 'page-task-add',
   templateUrl: 'task-add.html',
+  providers: [
+    TaskService
+  ]
 })
 export class TaskAddPage {
   task: Task = {

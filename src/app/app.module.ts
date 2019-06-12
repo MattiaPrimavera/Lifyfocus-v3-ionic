@@ -16,6 +16,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { MockDbProvider } from '../providers/db/mock-db/mock-db';
 import { HomePageModule } from '../pages/home/home.module';
+import { MenuProvider } from '../providers/menu/menu';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HomePageModule } from '../pages/home/home.module';
     ToastService,
     MockDbProvider,
     AuthService,
-    AngularFireAuth
+    AngularFireAuth,
+    MenuProvider
   ],
 })
 export class AppModule {}
