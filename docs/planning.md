@@ -6,9 +6,10 @@
 
 - [ ] Custom home screen icon
 - [ ] Splash screen
-- [ ] Loader while fetching data
+- [ ] Loader while waiting for async operations
 - [ ] Offline first
 - [ ] Display network status
 - [ ] Restrict data access
 - [ ] Header task search bar
 - [ ] Pick task icon
+- [ ] Autocompletion
