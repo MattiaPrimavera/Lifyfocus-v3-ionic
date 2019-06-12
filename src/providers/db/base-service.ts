@@ -11,7 +11,8 @@ export abstract class BaseService<T extends IBaseEntity> implements IBaseService
     path: string,
     private db: AngularFireDatabase,
   ) {
-    this.ref = Environment.NODE_ENV === 'test' ? null : this.db.list<T>(`${path}`);
+    const uid = localStorage.getItem('uid');
+    this.ref = Environment.NODE_ENV === 'test' ? null : this.db.list<T>(`${path}/${uid}`);
   }
 
   // @TODO implement getter
@@ -20,7 +21,7 @@ export abstract class BaseService<T extends IBaseEntity> implements IBaseService
   }
 
   list(): Observable<T[]> {
-    return this.ref
+     return this.ref
       .snapshotChanges() // Key and value
       .map(changes => {
         return changes.map(c => ({

@@ -44,15 +44,15 @@ export class LoginPage {
     this.auth.signInWithEmail(credentials)
 			.then((credentials: any) => {
         this.initDatabase(credentials);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot('home');
       })
 			.catch(error => this.loginError = error.message);
   }
 
   // @TODO: store login credentials
   initDatabase(credentials: any) {
-    // if(Environment.NODE_ENV !== 'test')
-    //   this.dbService.setUid(credentials.uid);
+    if(Environment.NODE_ENV !== 'test')
+      localStorage.setItem('uid', credentials.uid);
   }
 
   signup(){

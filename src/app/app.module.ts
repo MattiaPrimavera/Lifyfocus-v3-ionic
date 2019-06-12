@@ -1,5 +1,4 @@
 import { ToastService } from './../providers/toast.service';
-import { TaskService } from '../providers/task-service/task-service';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,6 +15,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { MockDbProvider } from '../providers/db/mock-db/mock-db';
+import { HomePageModule } from '../pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { MockDbProvider } from '../providers/db/mock-db/mock-db';
     AngularFireDatabaseModule,
     LoginPageModule,
     SignupPageModule,
+    HomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +41,6 @@ import { MockDbProvider } from '../providers/db/mock-db/mock-db';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockProvider,
-    TaskService,
     ToastService,
     MockDbProvider,
     AuthService,

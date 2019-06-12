@@ -12,8 +12,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class TaskService extends BaseService<Task> {
   constructor(firebaseDb: AngularFireDatabase) {
-      const path = 'tasks';
-      super(path, firebaseDb);
+    const path = 'tasks';
+    super(path, firebaseDb);
   }
 
   // @TODO

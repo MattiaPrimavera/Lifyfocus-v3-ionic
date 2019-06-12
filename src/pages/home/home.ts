@@ -17,7 +17,8 @@ export enum SlideActions {
 })
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [TaskService]
 })
 export class HomePage {
   public static TASK_ADD_PAGE = 'task-add';

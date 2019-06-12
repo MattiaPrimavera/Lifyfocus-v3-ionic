@@ -48,8 +48,13 @@ export class MyApp {
 
 	logout() {
     this.auth.signOut();
+    this.cleanupStorage();
     this.menu.close();
 		this.nav.setRoot('login');
+  }
+
+  cleanupStorage() {
+    localStorage.setItem('uid', '');
   }
 
   openPage(page) {

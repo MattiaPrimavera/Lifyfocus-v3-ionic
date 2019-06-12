@@ -13,5 +13,8 @@ import { MpSlidingListModule } from '../../components/mp-sliding-list/mp-sliding
     MpSlidingItemModule,
     MpSlidingListModule
   ],
+  exports: [
+    HomePage
+  ]
 })
 export class HomePageModule {}
