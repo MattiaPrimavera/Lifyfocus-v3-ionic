@@ -1,7 +1,7 @@
 import { Task } from '../../app/models/task'
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DatabaseService } from '../db/Database';
+import { BaseService } from '../db/base-service';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /*
   Generated class for the TaskService provider.
@@ -10,29 +10,19 @@ import { DatabaseService } from '../db/Database';
   and Angular DI.
 */
 @Injectable()
-export class TaskService {
-  constructor(
-    private db: DatabaseService
-  ) {}
-
-  getTasks(): Observable<Task[]> {
-    return this.db.getTasks();
+export class TaskService extends BaseService<Task> {
+  constructor(firebaseDb: AngularFireDatabase) {
+      const path = 'tasks';
+      super(path, firebaseDb);
   }
 
-  addTask(task: Task): any {
-    return this.db.addTask(task);
+  // @TODO
+  updateDoneStatus(task) {
+    this.setDone(task);
   }
 
-  editTask(task: Task): Promise<void> {
-    return this.db.editTask(task);
-  }
-
-  removeTask(task: Task): Promise<void> {
-    return this.db.removeTask(task);
-  }
-
-  updateDoneStatus(task: Task): Promise<void> {
-    task.done = !task.done;
-    return this.db.editTask(task);
+  setDone(task: Task): Promise<void> {
+    task.done = true;
+    return this.update(task);
   }
 }

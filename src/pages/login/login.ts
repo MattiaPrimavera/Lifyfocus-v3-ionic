@@ -5,7 +5,6 @@ import { HomePage } from '../../pages/home/home';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { SignupPage } from '../signup/signup';
 import * as Environment from '../../app/environment';
-import { DatabaseService } from '../../providers/db/Database';
 
 @IonicPage({
   segment: 'login',
@@ -22,7 +21,6 @@ export class LoginPage {
 	constructor(
 		private navCtrl: NavController,
     private auth: AuthService,
-    private dbService: DatabaseService,
 		form: FormBuilder
 	) {
 		this.loginForm = form.group({
@@ -51,9 +49,10 @@ export class LoginPage {
 			.catch(error => this.loginError = error.message);
   }
 
+  // @TODO: store login credentials
   initDatabase(credentials: any) {
-    if(Environment.NODE_ENV !== 'test')
-      this.dbService.setUid(credentials.uid);
+    // if(Environment.NODE_ENV !== 'test')
+    //   this.dbService.setUid(credentials.uid);
   }
 
   signup(){

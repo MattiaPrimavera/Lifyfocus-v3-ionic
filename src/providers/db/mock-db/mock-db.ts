@@ -2,7 +2,6 @@ import { ReplaySubject, Observable } from 'rxjs';
 import { MockProvider } from '../../mock/mock';
 import { Injectable } from '@angular/core';
 import { Task } from '../../../app/models/task';
-import { IDatabase } from '../IDatabase';
 
 /*
   Generated class for the MockDbProvider provider.
@@ -11,7 +10,7 @@ import { IDatabase } from '../IDatabase';
   and Angular DI.
 */
 @Injectable()
-export class MockDbProvider implements IDatabase{
+export class MockDbProvider {
   tasks: Task[];
   tasks$: ReplaySubject<Task[]>;
 

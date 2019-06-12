@@ -39,14 +39,14 @@ export class TaskEditPage {
   }
 
   saveTask(task: Task) {
-    this.taskService.editTask(task).then(() => {
+    this.taskService.update(task).then(() => {
       this.toast.show(`${task.title}: saved!`)
       this.navCtrl.setRoot('home')
     })
   }
 
   removeTask(task: Task) {
-    this.taskService.removeTask(task).then(() => {
+    this.taskService.delete(task.key).then(() => {
       this.toast.show(`${task.title}: removed!`)
       this.navCtrl.setRoot('home')
     })

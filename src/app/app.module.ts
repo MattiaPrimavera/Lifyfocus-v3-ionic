@@ -16,8 +16,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { MockDbProvider } from '../providers/db/mock-db/mock-db';
-import { FirebaseDbProvider } from '../providers/db/firebase-db/firebase-db';
-import { DatabaseService } from '../providers/db/Database';
 
 @NgModule({
   declarations: [
@@ -45,8 +43,6 @@ import { DatabaseService } from '../providers/db/Database';
     TaskService,
     ToastService,
     MockDbProvider,
-    FirebaseDbProvider,
-    DatabaseService,
     AuthService,
     AngularFireAuth
   ],

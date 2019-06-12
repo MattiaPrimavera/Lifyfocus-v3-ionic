@@ -22,7 +22,7 @@ export enum SlideActions {
 export class HomePage {
   public static TASK_ADD_PAGE = 'task-add';
   public static TASK_EDIT_PAGE = 'task-edit';
-  tasks$: Observable<Task[]> = this.taskService.getTasks();
+  tasks$: Observable<Task[]> = this.taskService.list();
   slidingItemMenu: Menu = { right: [
     {
       color: 'primary',
@@ -71,7 +71,7 @@ export class HomePage {
   }
 
   removeTask(task: Task) {
-    this.taskService.removeTask(task);
+    this.taskService.delete(task.key);
   }
 
   setTaskDone(task: Task) {

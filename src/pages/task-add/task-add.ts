@@ -38,11 +38,8 @@ export class TaskAddPage {
   }
 
   addTask(task: any) {
-    this.taskService.addTask(task).then(ref => {
-      if(ref)
-        console.log(ref.key);
-      this.toast.show(`${task.title}: saved!`)
-      this.navCtrl.setRoot('home');
-    })
+    this.taskService.add(task);
+    this.toast.show(`${task.title}: saved!`)
+    this.navCtrl.setRoot('home');
   }
 }
