@@ -17,6 +17,7 @@ import { SignupPageModule } from '../pages/signup/signup.module';
 import { MockDbProvider } from '../providers/db/mock-db/mock-db';
 import { HomePageModule } from '../pages/home/home.module';
 import { MenuProvider } from '../providers/menu/menu';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MenuProvider } from '../providers/menu/menu';
     MockDbProvider,
     AuthService,
     AngularFireAuth,
-    MenuProvider
+    MenuProvider,
+    ReactiveFormsModule
   ],
 })
 export class AppModule {}

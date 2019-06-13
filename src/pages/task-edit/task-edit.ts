@@ -1,10 +1,11 @@
 import { MockProvider } from './../../providers/mock/mock';
 import { TaskService } from '../../providers/task-service/task-service';
 import { Task } from './../../app/models/task';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastService } from '../../providers/toast.service';
 import { Environment } from '../../app/environment';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * Generated class for the TaskEditPage page.
@@ -26,13 +27,24 @@ import { Environment } from '../../app/environment';
 })
 export class TaskEditPage {
   task: Task;
+  form = this.formBuilder.group({
+    title: '',
+    description: '',
+  });
+  errors: string[] = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private taskService: TaskService,
     private toast: ToastService,
-    private mock: MockProvider
+    private mock: MockProvider,
+    private changeDetector: ChangeDetectorRef,
+    private formBuilder: FormBuilder,
   ) {}
+
+  ngAfterViewInit() {
+    this.changeDetector.detectChanges();
+  }
 
   ionViewDidLoad() {
     this.task = this.navParams.get('task');
@@ -42,6 +54,7 @@ export class TaskEditPage {
   }
 
   saveTask(task: Task) {
+    task = {...task, ...this.form.value};
     this.taskService.update(task).then(() => {
       this.toast.show(`${task.title}: saved!`)
       this.navCtrl.setRoot('home')
