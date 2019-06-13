@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TaskService } from '../../providers/task-service/task-service';
 import { ToastService } from '../../providers/toast.service';
+import { FormBuilder } from '@angular/forms';
 
 /**
  * Generated class for the TaskAddPage page.
@@ -23,24 +24,25 @@ import { ToastService } from '../../providers/toast.service';
   ]
 })
 export class TaskAddPage {
-  task: Task = {
+  form = this.formBuilder.group({
     title: '',
     description: '',
     created: new Date(),
     done: false
-  }
+  });
 
-  constructor(public navCtrl: NavController,
+  errors: string[] = [];
+
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     private taskService: TaskService,
-    private toast: ToastService
+    private toast: ToastService,
+    private formBuilder: FormBuilder,
   ) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TaskAddPage');
-  }
-
-  addTask(task: any) {
+  addTask() {
+    const task = this.form.value;
     this.taskService.add(task);
     this.toast.show(`${task.title}: saved!`)
     this.navCtrl.setRoot('home');

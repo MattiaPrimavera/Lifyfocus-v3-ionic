@@ -48,6 +48,8 @@ export class TaskEditPage {
 
   ionViewDidLoad() {
     this.task = this.navParams.get('task');
+    this.form.patchValue(this.task);
+
     if(!this.task && Environment.NODE_ENV === 'test') {
       this.task = this.mock.getTasks().pop();
     }

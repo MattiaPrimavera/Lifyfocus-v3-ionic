@@ -11,15 +11,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label floating>Title</ion-label>
-    <ion-input [(ngModel)]="task.title"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Description</ion-label>
-    <ion-input [(ngModel)]="task.description"></ion-input>
-  </ion-item>
-
-  <button ion-button block clear (click)="addTask(task)">Add</button>
+  <form method="post" (ngSubmit)="addTask()" #registerForm="ngForm">
+    <mp-input [name]="'title'" [form]="form" [placeholder]="'Title'"></mp-input>
+    <mp-input [name]="'description'" [form]="form" [placeholder]="'Description'"></mp-input>
+    <button ion-button block clear type="submit">Add</button>
+  </form>
 </ion-content>
