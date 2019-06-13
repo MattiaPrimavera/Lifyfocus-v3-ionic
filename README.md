@@ -1,4 +1,4 @@
-# Lifyfocus
+# Lifyfocus [![Build Status](https://travis-ci.com/MattiaPrimavera/Lifyfocus.svg?branch=master)](https://travis-ci.com/MattiaPrimavera/Lifyfocus)
 
 Ionic 3 application playground. This project is born for testing Angular & Ionic 3 stuff.
 
