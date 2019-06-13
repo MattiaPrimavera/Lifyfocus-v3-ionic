@@ -1,4 +1,3 @@
-import { MockProvider } from './../../providers/mock/mock';
 import { TaskService } from '../../providers/task-service/task-service';
 import { Task } from './../../app/models/task';
 import { Component, ChangeDetectorRef } from '@angular/core';
@@ -37,7 +36,6 @@ export class TaskEditPage {
     public navParams: NavParams,
     private taskService: TaskService,
     private toast: ToastService,
-    private mock: MockProvider,
     private changeDetector: ChangeDetectorRef,
     private formBuilder: FormBuilder,
   ) {}
@@ -49,10 +47,6 @@ export class TaskEditPage {
   ionViewDidLoad() {
     this.task = this.navParams.get('task');
     this.form.patchValue(this.task);
-
-    if(!this.task && Environment.NODE_ENV === 'test') {
-      this.task = this.mock.getTasks().pop();
-    }
   }
 
   saveTask(task: Task) {

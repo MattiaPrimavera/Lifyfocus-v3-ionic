@@ -1,4 +1,3 @@
-import { MockProvider } from './../../providers/mock/mock';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -18,8 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'objectives.html',
 })
 export class ObjectivesPage {
-  context = this.mock.getTasks();
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mock: MockProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
