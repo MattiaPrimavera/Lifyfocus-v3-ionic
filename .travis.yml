@@ -7,6 +7,7 @@ cache:
 before_script: npm install -g ionic@3.18.0 cordova@8.0
 script:
   - echo "Building app"
+  - export NODE_ENV=prod; gulp
   - ionic cordova platform add browser --no-interactive; ionic cordova build browser --prod --no-interactive
 deploy:
   provider: pages
