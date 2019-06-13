@@ -30,7 +30,7 @@ import { MenuProvider } from '../providers/menu/menu';
     AngularFireDatabaseModule,
     LoginPageModule,
     SignupPageModule,
-    HomePageModule
+    HomePageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

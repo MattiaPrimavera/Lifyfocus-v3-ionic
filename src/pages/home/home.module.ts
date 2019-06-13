@@ -10,8 +10,8 @@ import { MpSlidingListModule } from '../../components/mp-sliding-list/mp-sliding
   ],
   imports: [
     IonicPageModule.forChild(HomePage),
-    MpSlidingItemModule,
-    MpSlidingListModule
+    MpSlidingListModule,
+    MpSlidingItemModule
   ],
   exports: [
     HomePage

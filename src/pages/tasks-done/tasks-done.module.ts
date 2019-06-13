@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TasksDonePage } from './tasks-done';
-import { MpSlidingListModule } from '../../components/mp-sliding-list/mp-sliding-list.module';
 import { MpSlidingItemModule } from '../../components/mp-sliding-item/mp-sliding-item.module';
+import { MpSlidingListModule } from '../../components/mp-sliding-list/mp-sliding-list.module';
 
 @NgModule({
   declarations: [
@@ -10,8 +10,8 @@ import { MpSlidingItemModule } from '../../components/mp-sliding-item/mp-sliding
   ],
   imports: [
     IonicPageModule.forChild(TasksDonePage),
-    MpSlidingItemModule,
-    MpSlidingListModule
+    MpSlidingListModule,
+    MpSlidingItemModule
   ],
 })
 export class TasksDonePageModule {}
