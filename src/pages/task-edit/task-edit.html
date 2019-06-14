@@ -14,6 +14,7 @@
   <form method="post" (ngSubmit)="saveTask(task)" #registerForm="ngForm">
     <mp-input [name]="'title'" [form]="form" [placeholder]="'Title'"></mp-input>
     <mp-input [name]="'description'" [form]="form" [placeholder]="'Description'"></mp-input>
+    <mp-segment [name]="'priority'" [form]="form" [buttons]="priorityButtons"></mp-segment>
 
     <ion-row>
       <ion-col col-6>

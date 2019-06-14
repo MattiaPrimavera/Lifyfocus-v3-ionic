@@ -1,7 +1,7 @@
 import { Task } from './../../app/models/task';
 import { TaskService } from '../../providers/task-service/task-service';
 import { Component } from '@angular/core';
-import { NavController, IonicPage, MenuController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController } from 'ionic-angular';
 import { Observable } from 'rxjs';
 import { Menu } from '../../app/models/menu-entry';
 import { SlideActions, MenuProvider } from '../../providers/menu/menu';
@@ -41,15 +41,11 @@ export class HomePage {
         this.removeTask(task);
         break;
       case SlideActions.View:
-        this.viewTask(task);
+        this.openTaskUpdate(task);
         break;
       default:
         break;
     }
-  }
-
-  viewTask(task: Task) {
-    this.openTaskDetails(task);
   }
 
   removeTask(task: Task) {
@@ -64,7 +60,7 @@ export class HomePage {
     this.openPage(HomePage.TASK_ADD_PAGE);
   }
 
-  openTaskDetails(task: Task) {
+  openTaskUpdate(task: Task) {
     this.openPage(HomePage.TASK_EDIT_PAGE, {task});
   }
 

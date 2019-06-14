@@ -1,4 +1,3 @@
-import { Task } from './../../app/models/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TaskService } from '../../providers/task-service/task-service';
@@ -13,8 +12,7 @@ import { FormBuilder } from '@angular/forms';
  */
 
 @IonicPage({
-  name: 'task-add',
-  segment: 'task-add'
+  name: 'task-add'
 })
 @Component({
   selector: 'page-task-add',
@@ -24,11 +22,15 @@ import { FormBuilder } from '@angular/forms';
   ]
 })
 export class TaskAddPage {
+  priorityButtons = [
+    {value: 0, label: 'low'},
+    {value: 5, label: 'medium'},
+    {value: 10, label: 'high'}
+  ]
+
   form = this.formBuilder.group({
     title: '',
     description: '',
-    created: new Date(),
-    done: false
   });
 
   errors: string[] = [];
@@ -39,10 +41,16 @@ export class TaskAddPage {
     private taskService: TaskService,
     private toast: ToastService,
     private formBuilder: FormBuilder,
-  ) {}
+  ) {
+  }
 
   addTask() {
-    const task = this.form.value;
+    const task = {
+      ...this.form.value,
+      created: new Date().toISOString(),
+      done: false,
+      priority: 0,
+    }
     this.taskService.add(task);
     this.toast.show(`${task.title}: saved!`)
     this.navCtrl.setRoot('home');

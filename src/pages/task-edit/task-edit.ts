@@ -15,7 +15,6 @@ import { FormBuilder } from '@angular/forms';
 
 @IonicPage({
   name: 'task-edit',
-  segment: 'task-edit'
 })
 @Component({
   selector: 'page-task-edit',
@@ -26,6 +25,12 @@ import { FormBuilder } from '@angular/forms';
 })
 export class TaskEditPage {
   task: Task;
+  priorityButtons = [
+    {value: 0, label: 'low'},
+    {value: 5, label: 'medium'},
+    {value: 10, label: 'high'}
+  ];
+
   form = this.formBuilder.group({
     title: '',
     description: '',

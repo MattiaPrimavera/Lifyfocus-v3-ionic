@@ -5,7 +5,6 @@ import { HomePage } from '../../pages/home/home';
 import { AuthService } from '../../providers/auth-service/auth-service';
 
 @IonicPage({
-  segment: 'signup',
   name: 'signup'
 })
 @Component({

@@ -1,0 +1,9 @@
+<div [formGroup]="form">
+  <ion-item>
+    <ion-segment>
+      <ion-segment-button *ngFor="let button of buttons" [value]="button.value">
+        {{ button.label }}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+</div>
