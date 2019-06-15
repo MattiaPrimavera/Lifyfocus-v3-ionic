@@ -6,7 +6,7 @@
     <ion-title>Tasks</ion-title>
     <ion-buttons end>
       <button ion-button secondary icon-only icon-end (click)="openTaskAdd()">
-        <ion-icon color="secondary" name="add-circle-outline"></ion-icon>
+        <ion-icon color="white" name="add-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <mp-sliding-list
-    (itemClick)="openTaskDetails($event)"
+    (itemClick)="openTaskUpdate($event)"
     (optionClick)="onSlidingItemMenuClick($event)"
     [menu]="slidingItemMenu"
     [items]="tasks$">
