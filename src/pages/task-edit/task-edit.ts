@@ -3,7 +3,6 @@ import { Task } from './../../app/models/task';
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastService } from '../../providers/toast.service';
-import { Environment } from '../../app/environment';
 import { FormBuilder } from '@angular/forms';
 
 /**
@@ -37,7 +36,8 @@ export class TaskEditPage {
   });
   errors: string[] = [];
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
     private taskService: TaskService,
     private toast: ToastService,
