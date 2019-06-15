@@ -1,11 +1,16 @@
 <!-- Generated template for the MpSlidingListComponent component -->
 <ion-list>
-    <ng-container *ngFor="let item of items$ | async">
-      <mp-sliding-item
-        (itemClick)="onItemClick(item)"
-        (optionClick)="onOptionClicked($event)"
-        [item]="item"
-        [menu]="menu">
-      </mp-sliding-item>
-    </ng-container>
+    <div *ngIf="items$ | async as items; else loading">
+      <ng-container *ngFor="let item of items">
+        <mp-sliding-item
+          (itemClick)="onItemClick(item)"
+          (optionClick)="onOptionClicked($event)"
+          [item]="item"
+          [menu]="menu">
+        </mp-sliding-item>
+      </ng-container>
+    </div>
+    <ng-template #loading>
+        <mp-loader></mp-loader>
+    </ng-template>
 </ion-list>
