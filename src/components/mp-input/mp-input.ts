@@ -12,6 +12,7 @@ export class MpInputComponent implements OnInit {
   @Input() text = 'city';
   @Input() name;
   @Input() required: boolean = false;
+  @Input() type = 'text';
 
   constructor() {}
 
