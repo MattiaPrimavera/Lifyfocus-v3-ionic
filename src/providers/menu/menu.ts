@@ -20,21 +20,21 @@ export class MenuProvider {
   getTaskMenu(doneLabel: string): Menu {
     return { right: [
       {
-        color: 'primary',
+        color: 'danger',
         label: 'Remove',
         id: SlideActions.Remove,
-        icon: 'email',
+        icon: 'trash',
       },
       {
-        color: 'secondary',
+        color: 'primary',
         label: 'View',
         id: SlideActions.View,
-        icon: 'email',
+        icon: 'eye',
       },
       {
         color: 'secondary',
         label: doneLabel,
-        icon: 'email',
+        icon: 'done-all',
         id: SlideActions.Done
       }
     ],
