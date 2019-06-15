@@ -3,10 +3,21 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>Tasks</ion-title>
+    <!-- <ion-title>{{ pageTitle }}</ion-title> -->
+    <!-- Search bar -->
+    <ion-toolbar color="primary">
+      <ion-searchbar [(ngModel)]="searchInput" (ionCancel)="onSearchCancel()"></ion-searchbar>
+    </ion-toolbar>
+
     <ion-buttons end>
+      <!-- Done / Undone icon buttons -->
+      <button ion-button secondary icon-only icon-end (click)="switchTasks()">
+        <ion-icon color="white" name="switch"></ion-icon>
+      </button>
+
+      <!-- Add icon buttons -->
       <button ion-button secondary icon-only icon-end (click)="openTaskAdd()">
-        <ion-icon color="white" name="add-circle"></ion-icon>
+        <ion-icon color="white" name="create"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

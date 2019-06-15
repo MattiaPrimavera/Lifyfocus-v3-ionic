@@ -18,10 +18,11 @@ import { SlideActions, MenuProvider } from '../../providers/menu/menu';
 export class HomePage {
   public static TASK_ADD_PAGE = 'task-add';
   public static TASK_EDIT_PAGE = 'task-edit';
-  tasks$: Observable<Task[]> = this.taskService.list()
-    .switchMap((tasks: Task[]) => {
-      return Observable.of(tasks.filter(task => task.done === false));
-    });
+  showDone: boolean = false;
+  searchInput: string = ''; // ngModel for the search bar
+
+  tasks$: Observable<Task[]> = this.getTasks();
+  filteredTasks$: Observable<Task[]> = this.getFilteredTasks(this.tasks$);
   slidingItemMenu: Menu = this.menuService.getTaskMenu('Done');
 
   constructor(
@@ -29,6 +30,43 @@ export class HomePage {
     public navCtrl: NavController,
     private taskService: TaskService,
     private menu: MenuController) {}
+
+  getTasks(): Observable<Task[]> {
+    return this.taskService.list()
+      .switchMap((tasks: Task[]) => Observable.of(this.filterTasks(tasks)));
+  }
+
+  getFilteredTasks(tasks$: Observable<Task[]>): Observable<Task[]> {
+    return tasks$
+      .switchMap((tasks: Task[]) => Observable.of(this.filterTasks(tasks)));
+  }
+
+  filterTasks(tasks: Task[]) {
+    return tasks.filter(task => task.done === this.showDone && this.filterTitle(task));
+  }
+
+  filterTitle(task: Task): boolean {
+    if(this.searchInput.length <= 1)
+      return true;
+
+    return task.title.indexOf(this.searchInput) >= 0 ? true : false;
+  }
+
+  onSearchInput() {
+    this.filteredTasks$ = this.getFilteredTasks(this.tasks$);
+  }
+
+  onSearchCancel() {
+    this.filteredTasks$ = this.tasks$;
+  }
+
+  /**
+   * Shows either 'Done' or 'To do' tasks
+   */
+  switchTasks() {
+    this.showDone = !this.showDone;
+    this.filteredTasks$ = this.getFilteredTasks(this.tasks$);
+  }
 
   onSlidingItemMenuClick($event) {
     const {optionId, item} = $event;
