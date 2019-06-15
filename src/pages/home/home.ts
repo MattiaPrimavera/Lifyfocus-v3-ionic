@@ -54,7 +54,7 @@ export class HomePage {
    * @returns show the task or not
    */
   filterTitle(task: Task): boolean {
-    if(this.searchInput.length <= 1)
+    if(!this.searchInput.length)
       return true;
 
     return task.title.indexOf(this.searchInput) >= 0 ? true : false;
