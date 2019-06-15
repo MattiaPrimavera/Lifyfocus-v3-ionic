@@ -41,10 +41,18 @@ export class HomePage {
       .switchMap((tasks: Task[]) => Observable.of(this.filterTasks(tasks)));
   }
 
-  filterTasks(tasks: Task[]) {
+  /**
+   * Filter tasks by search bar input match with titlee
+   */
+  filterTasks(tasks: Task[]): Task[] {
     return tasks.filter(task => task.done === this.showDone && this.filterTitle(task));
   }
 
+  /**
+   * Check if the task is to show according to the search bar input matching its title
+   * @param task Task to filter
+   * @returns show the task or not
+   */
   filterTitle(task: Task): boolean {
     if(this.searchInput.length <= 1)
       return true;
@@ -52,6 +60,9 @@ export class HomePage {
     return task.title.indexOf(this.searchInput) >= 0 ? true : false;
   }
 
+  /**
+   * Search bar event handlers
+   */
   onSearchInput() {
     this.filteredTasks$ = this.getFilteredTasks(this.tasks$);
   }
