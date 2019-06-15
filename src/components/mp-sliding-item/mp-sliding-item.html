@@ -1,5 +1,5 @@
 <!-- Generated template for the MpSlidingItemComponent component -->
-<ion-item-sliding detail-push>
+<ion-item-sliding detail-push #itemSliding>
   <ion-item>
     <ion-avatar item-start>
       <ion-icon *ngIf="item.done" name="done-all"></ion-icon>
@@ -17,10 +17,11 @@
     </ion-row>
   </ion-item>
 
-    <ion-item-options side="right">
-      <button *ngFor="let entry of menu.right" (click)="onOptionClicked(entry.id, item)" ion-button [color]="entry.color">
-        <ion-icon [name]="entry.icon"></ion-icon>
-        {{entry.label}}
-      </button>
-    </ion-item-options>
+  <!-- Right swipe Options -->
+  <ion-item-options side="right">
+    <button ion-button *ngFor="let entry of menu.right" expandable (click)="onOptionClicked(itemSliding, entry.id, item)" [color]="entry.color">
+      <ion-icon [name]="entry.icon"></ion-icon>
+      {{entry.label}}
+    </button>
+  </ion-item-options>
 </ion-item-sliding>
