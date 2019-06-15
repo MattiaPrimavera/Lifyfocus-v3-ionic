@@ -6,7 +6,7 @@
     <!-- <ion-title>{{ pageTitle }}</ion-title> -->
     <!-- Search bar -->
     <ion-toolbar color="primary">
-      <ion-searchbar [(ngModel)]="searchInput" (input)="onSearchInput()" (ionCancel)="onSearchCancel()"></ion-searchbar>
+      <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onSearchInput()"></ion-searchbar>
     </ion-toolbar>
 
     <ion-buttons end>

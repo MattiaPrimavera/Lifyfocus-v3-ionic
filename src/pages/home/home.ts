@@ -67,10 +67,6 @@ export class HomePage {
     this.filteredTasks$ = this.getFilteredTasks(this.tasks$);
   }
 
-  onSearchCancel() {
-    this.filteredTasks$ = this.tasks$;
-  }
-
   /**
    * Shows either 'Done' or 'To do' tasks
    */
@@ -102,6 +98,11 @@ export class HomePage {
   }
 
   setTaskDone(task: Task) {
+    if(!task.done)
+      task.done = true;
+    else
+      task.done = false;
+
     this.taskService.setDone(task, true);
   }
 
