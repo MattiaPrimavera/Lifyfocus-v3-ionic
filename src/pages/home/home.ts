@@ -103,7 +103,7 @@ export class HomePage {
     else
       task.done = false;
 
-    this.taskService.setDone(task, true);
+    this.taskService.setDone(task, task.done);
   }
 
   openTaskAdd() {
