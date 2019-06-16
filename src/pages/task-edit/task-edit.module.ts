@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TaskEditPage } from './task-edit';
 import { MpInputModule } from '../../components/mp-input/mp-input.module';
 import { MpSegmentModule } from '../../components/mp-segment/mp-segment.module';
+import { BaseModelPageModule } from '../../components/base-model-page/base-model-page.module';
 
 @NgModule({
   declarations: [
@@ -10,8 +11,9 @@ import { MpSegmentModule } from '../../components/mp-segment/mp-segment.module';
   ],
   imports: [
     IonicPageModule.forChild(TaskEditPage),
+    BaseModelPageModule,
     MpInputModule,
-    MpSegmentModule
+    MpSegmentModule,
   ],
 })
 export class TaskEditPageModule {}

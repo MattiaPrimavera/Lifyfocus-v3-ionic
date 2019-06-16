@@ -16,7 +16,6 @@ import { SlideActions, MenuProvider } from '../../providers/menu/menu';
   providers: [TaskService]
 })
 export class HomePage {
-  public static TASK_ADD_PAGE = 'task-add';
   public static TASK_EDIT_PAGE = 'task-edit';
   showDone: boolean = false;
   searchInput: string = ''; // ngModel for the search bar
@@ -108,11 +107,11 @@ export class HomePage {
   }
 
   openTaskAdd() {
-    this.openPage(HomePage.TASK_ADD_PAGE);
+    this.openPage(HomePage.TASK_EDIT_PAGE, {pageType: 'add'});
   }
 
   openTaskUpdate(task: Task) {
-    this.openPage(HomePage.TASK_EDIT_PAGE, {task});
+    this.openPage(HomePage.TASK_EDIT_PAGE, {task, pageType: 'edit'});
   }
 
   openPage(page: string, params: any = {}) {

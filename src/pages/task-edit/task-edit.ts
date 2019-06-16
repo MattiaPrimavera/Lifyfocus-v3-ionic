@@ -1,6 +1,6 @@
 import { TaskService } from '../../providers/task-service/task-service';
 import { Task } from './../../app/models/task';
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ToastService } from '../../providers/toast.service';
 import { FormBuilder } from '@angular/forms';
@@ -23,7 +23,10 @@ import { FormBuilder } from '@angular/forms';
   ]
 })
 export class TaskEditPage {
-  task: Task;
+  showRemove: boolean = false;
+  pageType: any = 'add';
+  task: Task = null;
+  title: string = 'Add';
   priorityButtons = [
     {value: 0, label: 'low'},
     {value: 5, label: 'medium'},
@@ -43,7 +46,8 @@ export class TaskEditPage {
     private toast: ToastService,
     private changeDetector: ChangeDetectorRef,
     private formBuilder: FormBuilder,
-  ) {}
+  ) {
+  }
 
   ngAfterViewInit() {
     this.changeDetector.detectChanges();
@@ -51,20 +55,63 @@ export class TaskEditPage {
 
   ionViewDidLoad() {
     this.task = this.navParams.get('task');
-    this.form.patchValue(this.task);
+    this.pageType = this.navParams.get('pageType');
+    this.setupPage(this.pageType);
+
+    if(this.task)
+      this.form.patchValue(this.task);
   }
 
-  saveTask(task: Task) {
-    task = {...task, ...this.form.value};
-    this.taskService.update(task).then(() => {
-      this.toast.show(`${task.title}: saved!`)
+  /**
+   * Setup page according to its PageType (add / edit)
+   * @param pageType page type received as NavParam
+   */
+  setupPage(pageType: string) {
+    if(pageType === 'add') {
+      this.title = 'Add';
+      this.showRemove = false;
+    } else {
+      this.title = 'Edit';
+      this.showRemove = true;
+    }
+  }
+
+  editTask() {
+    this.task = {...this.task, ...this.form.value};
+    this.taskService.update(this.task).then(() => {
+      this.toast.show(`${this.task.title}: saved!`)
       this.navCtrl.setRoot('home')
     })
   }
 
-  removeTask(task: Task) {
-    this.taskService.delete(task.key).then(() => {
-      this.toast.show(`${task.title}: removed!`)
+  addTask() {
+    if(this.form.valid) {
+      const task = {
+        ...this.form.value,
+        created: new Date().toISOString(),
+        done: false,
+        priority: 0,
+      }
+      this.taskService.add(task);
+      this.toast.show(`${task.title}: saved!`)
+      this.navCtrl.setRoot('home');
+    }
+  }
+
+  /**
+   * Save the task (add / edit)
+   */
+  save() {
+    if(this.pageType == 'add')
+      this.addTask();
+    else
+      this.editTask();
+  }
+
+  remove() {
+    console.log('Remove clicked')
+    this.taskService.delete(this.task.key).then(() => {
+      this.toast.show(`${this.task.title}: removed!`)
       this.navCtrl.setRoot('home')
     })
   }
