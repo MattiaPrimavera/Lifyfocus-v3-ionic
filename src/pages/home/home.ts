@@ -72,6 +72,7 @@ export class HomePage {
    */
   switchTasks() {
     this.showDone = !this.showDone;
+    this.slidingItemMenu = this.menuService.getTaskMenu(!this.showDone ? 'Done' : 'To do');
     this.filteredTasks$ = this.getFilteredTasks(this.tasks$);
   }
 
