@@ -10,8 +10,10 @@
       </mp-sliding-item>
     </ng-container>
 
-    <ng-container *ngIf="!items.length" #emptyListMessage>
-      No items.
+    <ng-container *ngIf="!items.length">
+      <div text-center>
+          No items.
+      </div>
     </ng-container>
 
   </div>
