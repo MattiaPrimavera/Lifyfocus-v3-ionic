@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Menu } from '../../app/models/menu-entry';
 import { ItemSliding } from 'ionic-angular';
+import { MpDatePipe } from '../../pipes/mp-date/mp-date';
 
 /**
  * Generated class for the MpSlidingItemComponent component.
@@ -10,7 +11,8 @@ import { ItemSliding } from 'ionic-angular';
  */
 @Component({
   selector: 'mp-sliding-item',
-  templateUrl: 'mp-sliding-item.html'
+  templateUrl: 'mp-sliding-item.html',
+  providers: [MpDatePipe]
 })
 export class MpSlidingItemComponent {
   @Input() item: any;
