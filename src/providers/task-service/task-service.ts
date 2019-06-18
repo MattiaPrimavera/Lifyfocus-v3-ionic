@@ -17,13 +17,8 @@ export class TaskService extends BaseService<Task> {
   }
 
   setDone(task: Task, done: boolean): Promise<void> {
-    task.done = done;
-
-    if(done)
-      task.closed = new Date();
-    else
-      task.closed = null;
-
+    task.isDone = done;
+    task.closedAt = done ? new Date() : null;
     return this.update(task);
   }
 }

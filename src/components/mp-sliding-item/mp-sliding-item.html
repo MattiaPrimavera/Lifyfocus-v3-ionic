@@ -2,8 +2,8 @@
 <ion-item-sliding detail-push #itemSliding>
   <ion-item>
     <!-- <ion-avatar item-start>
-      <ion-icon *ngIf="item.done" name="done-all"></ion-icon>
-      <img *ngIf="!item.done" src="assets/imgs/logo.png">
+      <ion-icon *ngIf="item.isDone" name="done-all"></ion-icon>
+      <img *ngIf="!item.isDone" src="assets/imgs/logo.png">
     </ion-avatar> -->
     <ion-row>
       <ion-col col-6>
@@ -12,7 +12,7 @@
       </ion-col>
 
       <ion-col col-6 text-end>
-        <p>{{ (item.done ? item.closed : item.created) | mpDate }}</p>
+        <p>{{ (item.isDone ? item.closedAt : item.createdAt) | mpDate }}</p>
       </ion-col>
     </ion-row>
   </ion-item>

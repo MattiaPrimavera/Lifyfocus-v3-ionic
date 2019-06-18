@@ -88,8 +88,8 @@ export class TaskEditPage {
     if(this.form.valid) {
       const task = {
         ...this.form.value,
-        created: new Date().toISOString(),
-        done: false,
+        createdAt: new Date().toISOString(),
+        isDone: false,
         priority: 0,
       }
       this.taskService.add(task);

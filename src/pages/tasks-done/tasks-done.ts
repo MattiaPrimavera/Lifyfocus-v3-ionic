@@ -26,7 +26,7 @@ import { HomePage } from '../home/home';
 export class TasksDonePage {
   tasks$: Observable<Task[]> = this.taskService.list()
     .switchMap((tasks: Task[]) => {
-      return Observable.of(tasks.filter(task => task.done === true));
+      return Observable.of(tasks.filter(task => task.isDone === true));
     });
 
   slidingItemMenu: Menu = this.menuService.getTaskMenu('Undone');

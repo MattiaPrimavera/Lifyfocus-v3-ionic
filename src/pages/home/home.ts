@@ -44,7 +44,7 @@ export class HomePage {
    * Filter tasks by search bar input match with titlee
    */
   filterTasks(tasks: Task[]): Task[] {
-    return tasks.filter(task => task.done === this.showDone && this.filterTitle(task));
+    return tasks.filter(task => task.isDone === this.showDone && this.filterTitle(task));
   }
 
   /**
@@ -98,12 +98,12 @@ export class HomePage {
   }
 
   setTaskDone(task: Task) {
-    if(!task.done)
-      task.done = true;
+    if(!task.isDone)
+      task.isDone = true;
     else
-      task.done = false;
+      task.isDone = false;
 
-    this.taskService.setDone(task, task.done);
+    this.taskService.setDone(task, task.isDone);
   }
 
   openTaskAdd() {
