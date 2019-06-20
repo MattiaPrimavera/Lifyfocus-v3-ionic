@@ -1,10 +1,11 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 /**
- * Generated class for the BaseModelPageComponent component.
+ * This component provides the base frame for `${model}Add` & `${model}Edit`
+ * pages:
  *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
+ * - styled header with `validate` button
+ * - optional `remove` button
  */
 @Component({
   selector: 'base-model-page',
