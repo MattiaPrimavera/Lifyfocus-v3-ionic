@@ -24,10 +24,7 @@ export class MpSlidingItemComponent {
     this.onClick.emit(item);
   }
 
-  /**
-   * Event emitted on menu option click
-   */
-  onOptionClicked(itemSliding: ItemSliding, optionId, item: any) {
+  onMenuOptionClicked(itemSliding: ItemSliding, optionId, item: any) {
     itemSliding.close();
     this.onOptionClick.emit({optionId, item});
   }

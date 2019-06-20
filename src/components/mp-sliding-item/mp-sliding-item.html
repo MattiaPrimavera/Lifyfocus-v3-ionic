@@ -19,7 +19,7 @@
 
   <!-- Right swipe Options -->
   <ion-item-options side="right">
-    <button ion-button *ngFor="let entry of menu.right" expandable (click)="onOptionClicked(itemSliding, entry.id, item)" [color]="entry.color">
+    <button ion-button *ngFor="let entry of menu.right" expandable (click)="onMenuOptionClicked(itemSliding, entry.id, item)" [color]="entry.color">
       <ion-icon [name]="entry.icon"></ion-icon>
       {{entry.label}}
     </button>
