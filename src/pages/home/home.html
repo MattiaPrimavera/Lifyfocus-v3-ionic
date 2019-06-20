@@ -24,15 +24,20 @@
 </ion-header>
 
 <ion-content padding>
-  <mp-sliding-list *ngIf="filteredTasks$ | async as tasks; else loading"
-    [items]="tasks">
-    <mp-sliding-item *ngFor="let task of tasks"
-      [menu]="slidingItemMenu"
-      [item]="task"
-      (itemClick)="openTaskUpdate($event)"
-      (optionClick)="onSlidingItemMenuClick($event)">
-    </mp-sliding-item>
-  </mp-sliding-list>
+  <ng-container *ngIf="filteredTasks$ | async as tasks; else loading">
+    <ion-list>
+      <mp-sliding-item *ngFor="let task of tasks"
+        [menu]="slidingItemMenu"
+        [item]="task"
+        (itemClick)="openTaskUpdate($event)"
+        (optionClick)="onSlidingItemMenuClick($event)">
+      </mp-sliding-item>
+
+      <ng-container *ngIf="tasks && !tasks.length" text-center>
+          <p>No items.</p>
+      </ng-container>
+    </ion-list>
+  </ng-container>
 
   <ng-template #loading>
     <mp-loader></mp-loader>
