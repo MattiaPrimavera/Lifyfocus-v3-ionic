@@ -1,14 +1,3 @@
 mp-sliding-list {
-  /*
-    Position loader in the middle of the list component.
-    This equals the screen center when the list takes
-    has full screen height size
-  */
-  ion-list {
-    height: 100%;
-  }
 
-  #loading {
-    margin: auto;
-  }
 }
