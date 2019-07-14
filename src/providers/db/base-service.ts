@@ -1,5 +1,5 @@
 import { IBaseService } from "./ibase-service";
-import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { IBaseEntity } from "./ibase-entity";
 import { Observable } from "rxjs";
 import { Environment } from '../../app/environment';
