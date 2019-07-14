@@ -14,3 +14,5 @@
 - [ ] Pick task icon
 - [ ] Autocompletion
 - [ ] Dynamic forms library
+- [ ] Tags
+- [ ] Show created date (today, 2d ago ...)
