@@ -1,64 +1,8 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <button ion-button menuToggle icon-only>
-      <ion-icon name='menu'></ion-icon>
-    </button>
-    <!-- <ion-title>{{ pageTitle }}</ion-title> -->
-    <!-- Search bar -->
-    <ion-toolbar color="primary">
-      <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onSearchInput()"></ion-searchbar>
-    </ion-toolbar>
-
-    <ion-buttons end>
-      <!-- Done / Undone icon buttons -->
-      <button ion-button secondary icon-only icon-end (click)="switchTasks()">
-        <ion-icon color="white" name="switch"></ion-icon>
-      </button>
-
-      <!-- Add icon buttons -->
-      <button ion-button secondary icon-only icon-end (click)="openTaskAdd()">
-        <ion-icon color="white" name="create"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  <!-- Today tasks -->
-  <mp-card [title]="'Today'">
-    <ng-container *ngIf="filteredTasks$ | async as todayTasks; else loading">
-      <ion-list>
-        <mp-sliding-item *ngFor="let task of todayTasks"
-          [menu]="slidingItemMenu"
-          [item]="task"
-          (itemClick)="openTaskUpdate($event)"
-          (optionClick)="onSlidingItemMenuClick($event)">
-        </mp-sliding-item>
-
-        <ng-container *ngIf="todayTasks && !todayTasks.length" text-center>
-          <p>No items.</p>
-        </ng-container>
-      </ion-list>
-    </ng-container>
-  </mp-card>
-
-  <!-- High Prio tasks -->
-  <mp-card [title]="'High Prios'">
-    <ng-container *ngIf="filteredTasks$ | async as highPrioTasks; else loading">
-      <ion-list>
-        <mp-sliding-item *ngFor="let task of highPrioTasks"
-          [menu]="slidingItemMenu"
-          [item]="task"
-          (itemClick)="openTaskUpdate($event)"
-          (optionClick)="onSlidingItemMenuClick($event)">
-        </mp-sliding-item>
-
-        <ng-container *ngIf="highPrioTasks && !highPrioTasks.length" text-center>
-          <p>No items.</p>
-        </ng-container>
-      </ion-list>
-    </ng-container>
-  </mp-card>
+  <task-list
+    [headerTitle]="'Today'"
+    [menu]="slidingItemMenu">
+  </task-list>
 
   <ng-template #loading>
     <mp-loader></mp-loader>

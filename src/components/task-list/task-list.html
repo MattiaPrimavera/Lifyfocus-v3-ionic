@@ -1,0 +1,19 @@
+<!-- Generated template for the TaskListComponent component -->
+<ng-container *ngIf="tasks$ | async as todayTasks; else loading">
+  <ion-list>
+    <ion-list-header>
+      {{ headerTitle }}
+    </ion-list-header>
+
+    <mp-sliding-item *ngFor="let task of todayTasks"
+      [menu]="slidingItemMenu"
+      [item]="task"
+      (itemClick)="openTaskUpdate($event)"
+      (optionClick)="onSlidingItemMenuClick($event)">
+    </mp-sliding-item>
+
+    <ng-container *ngIf="todayTasks && !todayTasks.length" text-center>
+      <p>No items.</p>
+    </ng-container>
+  </ion-list>
+</ng-container>
