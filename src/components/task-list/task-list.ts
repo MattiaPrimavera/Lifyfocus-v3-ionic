@@ -6,6 +6,7 @@ import { HomePage } from '../../pages/home/home';
 import { MenuController, NavController } from 'ionic-angular';
 import { SlideActions } from '../../providers/menu/menu';
 import { Menu } from '../../app/models/menu-entry';
+import { StoreProvider } from '../../providers/store/store';
 
 /**
  * Generated class for the TaskListComponent component.
@@ -19,19 +20,16 @@ import { Menu } from '../../app/models/menu-entry';
   providers: [TaskService]
 })
 export class TaskListComponent {
-  @Input('searchInput') searchInput;
   @Input('menu') slidingItemMenu: Menu = null;
   @Input() headerTitle: string = '';
-
-  showDone: boolean = false;
   tasks$: Observable<Task[]>;
 
   constructor(
     private taskService: TaskService,
     public navCtrl: NavController,
-    public menu: MenuController
+    public menu: MenuController,
+    public store: StoreProvider
   ) {
-    console.log('Hello TaskListComponent Component');
   }
 
   ngOnInit() {
@@ -39,18 +37,21 @@ export class TaskListComponent {
   }
 
   getTasks(): Observable<Task[]> {
-    return this.taskService.list()
-      .switchMap((tasks: Task[]) => {
-        console.log('Getting the tasks TaskListComponent');
-        return Observable.of(this.filterTasks(tasks))
+    return Observable.combineLatest([this.taskService.list(), this.store.state$])
+      .flatMap((result: any) => {
+        const [tasks, state] = result;
+        return Observable.of(this.filterTasks(tasks, {
+          showCompleted: state.showCompleted,
+          searchBarInput: state.searchBarInput
+        }))
       });
   }
 
   /**
    * Filter tasks by search bar input match with titlee
    */
-  filterTasks(tasks: Task[]): Task[] {
-    return tasks.filter(task => task.isDone === this.showDone && this.filterTitle(task));
+  filterTasks(tasks: Task[], filters: any): Task[] {
+    return tasks.filter(task => task.isDone === filters.showCompleted && this.filterTitle(task, filters.searchBarInput));
   }
 
   /**
@@ -58,12 +59,11 @@ export class TaskListComponent {
    * @param task Task to filter
    * @returns show the task or not
    */
-  filterTitle(task: Task): boolean {
-/*    if(!this.searchInput.length)
+  filterTitle(task: Task, title: string): boolean {
+    if (!title || !title.length)
       return true;
 
-    return task.title.indexOf(this.searchInput) >= 0 ? true : false;*/
-    return true;
+    return task.title.indexOf(title) >= 0 ? true : false;
   }
 
   removeTask(task: Task) {

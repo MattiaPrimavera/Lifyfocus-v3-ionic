@@ -16,6 +16,7 @@ import { SignupPageModule } from '../pages/signup/signup.module';
 import { HomePageModule } from '../pages/home/home.module';
 import { MenuProvider } from '../providers/menu/menu';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreProvider } from '../providers/store/store';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthService,
     AngularFireAuth,
     MenuProvider,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreProvider
   ],
 })
 export class AppModule {}
