@@ -21,11 +21,6 @@
         <button ion-button secondary icon-only icon-end (click)="switchTaskStateDoneOrToDo()">
           <ion-icon color="white" [name]="state.showCompleted ? 'done-all' : 'pricetag'"></ion-icon>
         </button>
-
-        <!-- Add icon buttons -->
-        <button ion-button secondary icon-only icon-end (click)="openTaskAdd()">
-          <ion-icon color="white" name="create"></ion-icon>
-        </button>
       </ion-buttons>
     </ion-navbar>
   </ion-header>
@@ -36,4 +31,10 @@
     [headerTitle]="'All Tasks'"
     [menu]="slidingItemMenu">
   </task-list>
+
+  <ion-fab right bottom>
+    <button ion-fab (click)="openTaskAdd()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
