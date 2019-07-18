@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 export class TabsPage {
   boardTab = 'home';
   tasksTab = 'tasks';
-  objectivesTab = 'objectives';
 
   constructor() {
   }
