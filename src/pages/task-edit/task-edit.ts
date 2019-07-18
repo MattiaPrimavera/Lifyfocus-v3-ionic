@@ -80,7 +80,7 @@ export class TaskEditPage {
     this.task = {...this.task, ...this.form.value};
     this.taskService.update(this.task).then(() => {
       this.toast.show(`${this.task.title}: saved!`)
-      this.navCtrl.setRoot('home')
+      this.navCtrl.setRoot('tasks')
     })
   }
 
@@ -94,7 +94,7 @@ export class TaskEditPage {
       }
       this.taskService.add(task);
       this.toast.show(`${task.title}: saved!`)
-      this.navCtrl.setRoot('home');
+      this.navCtrl.setRoot('tasks');
     }
   }
 
