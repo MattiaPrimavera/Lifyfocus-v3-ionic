@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.1",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-rename": "^1.2.2",
     "typescript": "~2.6.2"
   },
